@@ -5,7 +5,7 @@ OBJS = main.cpp
 cc = g++
 
 # compilers flags
-COMPILER_FLAGS = -w
+COMPILER_FLAGS = -g -w
 
 #sdl2 lib requirement
 LIBSDL = `sdl2-config --cflags --libs`
