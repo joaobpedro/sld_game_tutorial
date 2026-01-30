@@ -213,7 +213,7 @@ int main(int argc, char *args[]) {
     if (!init()){
         printf("Failed to initialize\n");
     } else {
-        if (!loadMedia()) {
+        if (!loadMediaTexture()) {
             printf("Failed to load media\n");
         } else {
             // event handling
@@ -279,6 +279,6 @@ int main(int argc, char *args[]) {
             }
         }
     }
-    close();
+    closeTexture();
     return 0;
 }
