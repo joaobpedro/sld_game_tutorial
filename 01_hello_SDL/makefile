@@ -11,7 +11,7 @@ COMPILER_FLAGS = -g -w
 LIBSDL = `sdl2-config --cflags --libs`
 
 #linker flags
-LINKER_FLAG = -lSDL2
+LINKER_FLAGS = -lSDL2 -lSDL2_image
 
 # OBJ_NAME specifies the target name
 OBJ_NAME = game
