@@ -8,10 +8,10 @@ cc = g++
 COMPILER_FLAGS = -g -w
 
 #sdl2 lib requirement
-LIBSDL = `sdl2-config --cflags --libs`
+LIBSDL = `pkg-config --cflags --libs sdl3 sdl3-image`
 
 #linker flags
-LINKER_FLAGS = -lSDL2 -lSDL2_image
+LINKER_FLAGS = -lSDL3 -lSDL3_image
 
 # OBJ_NAME specifies the target name
 OBJ_NAME = game
