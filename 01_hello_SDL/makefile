@@ -1,5 +1,6 @@
 #OBJS specify the files to compile
-OBJS = main.cpp
+# OBJS = main.cpp
+OBJS = 14-animation.cpp
 
 # compiler name
 cc = g++
