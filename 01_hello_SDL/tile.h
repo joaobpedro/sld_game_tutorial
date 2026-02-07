@@ -6,6 +6,7 @@
 #include <SDL3_image/SDL_image.h>
 /* #include <string> */
 /* #include <fstream> */
+#include "globals.h"
 
 class Tile
 {

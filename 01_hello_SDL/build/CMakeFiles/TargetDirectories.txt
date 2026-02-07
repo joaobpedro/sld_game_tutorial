@@ -1,0 +1,3 @@
+/home/joao/source/01_GameCpp/01_hello_SDL/build/CMakeFiles/Churro_Adventures.dir
+/home/joao/source/01_GameCpp/01_hello_SDL/build/CMakeFiles/edit_cache.dir
+/home/joao/source/01_GameCpp/01_hello_SDL/build/CMakeFiles/rebuild_cache.dir

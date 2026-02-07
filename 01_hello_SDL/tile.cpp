@@ -1,4 +1,6 @@
 #include "tile.h"
+#include "globals.h"
+#include "helper.h"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <SDL3_image/SDL_image.h>
