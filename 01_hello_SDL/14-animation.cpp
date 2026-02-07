@@ -410,7 +410,7 @@ bool loadMedia()
     bool success{ true };
 
     //Load scene textures
-    if( gSpriteSheetTexture.loadFromFile( "churro_animation2.png" ) == false )
+    if( gSpriteSheetTexture.loadFromFile( "churro_running.png" ) == false )
     {
         SDL_Log( "Unable to foo sprite sheet!\n");
         success = false;
@@ -490,7 +490,7 @@ int main( int argc, char* args[] )
                 frame++;
 
                 //Cycle animation
-                constexpr int kWakingAnimationFrames = 3;
+                constexpr int kWakingAnimationFrames = 6;
                 constexpr int kWakingAnimationFramesPerSprite = 6;
                 if( frame / kWakingAnimationFramesPerSprite >= kWakingAnimationFrames )
                 {
@@ -499,13 +499,16 @@ int main( int argc, char* args[] )
 
                 //Set sprite clips
                 constexpr float kSpriteWidth = 120;
-                constexpr float kSpriteHeight = 90;
-                constexpr float padding = 37;
+                constexpr float kSpriteHeight = 120;
+                constexpr float padding = 35;
                 SDL_FRect spriteClips[ kWakingAnimationFrames ] = {
-                    { kSpriteWidth * 0, 0.f, kSpriteWidth, kSpriteHeight },
-                    { kSpriteWidth * 1 + padding, 0.f, kSpriteWidth, kSpriteHeight },
+                    { kSpriteWidth * 0,             0.f, kSpriteWidth, kSpriteHeight },
+                    { kSpriteWidth * 1 + padding,   0.f, kSpriteWidth, kSpriteHeight },
                     { kSpriteWidth * 2 + 2*padding, 0.f, kSpriteWidth, kSpriteHeight },
-                    // { kSpriteWidth * 3, 0.f, kSpriteWidth, kSpriteHeight }
+                    { kSpriteWidth * 3 + 3*padding, 0.f, kSpriteWidth, kSpriteHeight },
+                    { kSpriteWidth * 4 + 4*padding, 0.f, kSpriteWidth, kSpriteHeight },
+                    { kSpriteWidth * 5 + 5*padding, 0.f, kSpriteWidth, kSpriteHeight },
+                    // { kSpriteWidth * 0,             0.f, kSpriteWidth, kSpriteHeight }
                 };
 
 

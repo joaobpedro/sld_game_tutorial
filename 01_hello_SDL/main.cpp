@@ -440,6 +440,7 @@ void Dot::setCamera( SDL_Rect& camera )
 void Dot::render( SDL_Rect& camera )
 {
     //Show the dot
+    //here I can define the redering
     gDotTexture.render( mBox.x - camera.x, mBox.y - camera.y );
 }
 
@@ -782,6 +783,7 @@ int main( int argc, char* args[] )
                 //Move the dot
                 dot.move( tileSet );
                 dot.setCamera( camera );
+                // maybe dot.animate
 
                 //Clear screen
                 SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
