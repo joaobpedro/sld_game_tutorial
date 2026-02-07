@@ -27,7 +27,93 @@ bool init()
     bool success = true;
 
     //Initialize SDL
-    if( !S    int topA, topB;
+    if( !SDL_Init( SDL_INIT_VIDEO ) )
+    {
+        printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
+        success = false;
+    }
+    else
+    {
+        //Create window and renderer
+        if( !SDL_CreateWindowAndRenderer( "SDL Tutorial", SCREEN_WIDTH, SCREEN_HEIGHT, 0, &gWindow, &gRenderer ) )
+        {
+            printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+            success = false;
+        }
+        else
+        {
+            //Enable vsync
+            SDL_SetRenderVSync( gRenderer, 1 );
+
+            //Initialize renderer color
+            SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+        }
+    }
+
+    return success;
+}
+
+bool loadMedia( Tile* tiles[] )
+{
+    //Loading success flag
+    bool success = true;
+
+    //Load dot texture
+    if( !gDotTexture.loadFromFile( "churro_game_main.bmp" ) )
+    {
+        printf( "Failed to load dot texture!\n" );
+        success = false;
+    }
+
+    //Load tile texture
+    if( !gTileTexture.loadFromFile( "tiles.png" ) )
+    {
+        printf( "Failed to load tile set texture!\n" );
+        success = false;
+    }
+
+    //Load tile map
+    if( !setTiles( tiles ) )
+    {
+        printf( "Failed to load tile set!\n" );
+        success = false;
+    }
+
+    return success;
+}
+
+void close( Tile* tiles[] )
+{
+    //Deallocate tiles
+    for( int i = 0; i < TOTAL_TILES; ++i )
+    {
+        if( tiles[ i ] != NULL )
+        {
+            delete tiles[ i ];
+            tiles[ i ] = NULL;
+        }
+    }
+
+    //Free loaded images
+    gDotTexture.free();
+    gTileTexture.free();
+
+    //Destroy window
+    SDL_DestroyRenderer( gRenderer );
+    SDL_DestroyWindow( gWindow );
+    gWindow = NULL;
+    gRenderer = NULL;
+
+    //Quit SDL subsystems
+    SDL_Quit();
+}
+
+bool checkCollision( SDL_Rect a, SDL_Rect b )
+{
+    //The sides of the rectangles
+    int leftA, leftB;
+    int rightA, rightB;
+    int topA, topB;
     int bottomA, bottomB;
 
     //Calculate the sides of rect A

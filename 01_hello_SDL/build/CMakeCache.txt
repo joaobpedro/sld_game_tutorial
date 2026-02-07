@@ -198,6 +198,12 @@ Churro_Adventures_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Churro_Adventures_SOURCE_DIR:STATIC=/home/joao/source/01_GameCpp/01_hello_SDL
 
+//The directory containing a CMake configuration file for SDL3.
+SDL3_DIR:PATH=/usr/local/lib/cmake/SDL3
+
+//The directory containing a CMake configuration file for SDL3_image.
+SDL3_image_DIR:PATH=/usr/local/lib/cmake/SDL3_image
+
 
 ########################
 # INTERNAL cache entries

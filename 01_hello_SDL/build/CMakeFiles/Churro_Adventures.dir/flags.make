@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/joao/source/01_GameCpp/01_hello_SDL/SDL3::SDL3 -I/home/joao/source/01_GameCpp/01_hello_SDL/SDL3::SDL3_image
+CXX_INCLUDES = 
 
 CXX_FLAGS = 
 

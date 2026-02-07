@@ -172,6 +172,8 @@ Churro_Adventures: CMakeFiles/Churro_Adventures.dir/main.cpp.o
 Churro_Adventures: CMakeFiles/Churro_Adventures.dir/texture.cpp.o
 Churro_Adventures: CMakeFiles/Churro_Adventures.dir/tile.cpp.o
 Churro_Adventures: CMakeFiles/Churro_Adventures.dir/build.make
+Churro_Adventures: /usr/local/lib/libSDL3_image.so.0.4.0
+Churro_Adventures: /usr/local/lib/libSDL3.so.0.4.0
 Churro_Adventures: CMakeFiles/Churro_Adventures.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/joao/source/01_GameCpp/01_hello_SDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Churro_Adventures"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Churro_Adventures.dir/link.txt --verbose=$(VERBOSE)
