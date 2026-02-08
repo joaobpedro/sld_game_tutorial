@@ -12,12 +12,16 @@
   * [ ] make the assets required from the story
   * [ ] make different levels for different parts of the story
 
-
 ## animate churro
-  * [ ] add loading the sprite
-  * [ ] add destroy teh sprite
+  * [x] add loading the sprite
+  * [x] add destroy teh sprite
   NOTE: the animation happens in the main loop, which make sense since I need motion
   read the docs in the web
-  * [ ] the load media loads the sprite sheet in chunks
-  * [ ] animation is just the rendering of the images at a given rate
+  * [x] the load media loads the sprite sheet in chunks
+  * [x] animation is just the rendering of the images at a given rate
   * [ ] make the animation respond to the user inputs
+    * [ ] I need more images to do this
+        * [ ] one running to the left
+        * [ ] one running up
+        * [ ] one running down
+        * [ ] one stopped

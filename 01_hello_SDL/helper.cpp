@@ -68,7 +68,7 @@ bool loadMedia( Tile* tiles[] )
     }
 
     //Load tile texture
-    if( !gTileTexture.loadFromFile( "../Assets/tiles.png" ) )
+    if( !gTileTexture.loadFromFile( "../Assets/forest_tiles_small.png" ) )
     {
         printf( "Failed to load tile set texture!\n" );
         success = false;
