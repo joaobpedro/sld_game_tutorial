@@ -33,7 +33,7 @@ extern SDL_Window* gWindow;
 extern SDL_Renderer* gRenderer;
 
 //Scene textures
-extern LTexture gDotTexture;
+extern LTexture gCharacterTexture;
 extern LTexture gTileTexture;
 
 extern SDL_FRect gTileClips[];

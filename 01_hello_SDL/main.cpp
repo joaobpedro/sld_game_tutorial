@@ -37,10 +37,12 @@ int main( int argc, char* args[] )
             SDL_Event e;
 
             //The dot that will be moving around on the screen
-            Dot dot;
+            character churro;
 
             //Level camera
             SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+
+            int frame {-1};
 
             //While application is running
             while( !quit )
@@ -55,12 +57,15 @@ int main( int argc, char* args[] )
                     }
 
                     //Handle input for the dot
-                    dot.handleEvent( e );
+                    churro.handleEvent( e );
                 }
 
+                frame++;
+                // printf("Frame number: %d \n", frame);
+
                 //Move the dot
-                dot.move( tileSet );
-                dot.setCamera( camera );
+                churro.move( tileSet );
+                churro.setCamera( camera );
                 // maybe dot.animate
 
                 //Clear screen
@@ -74,7 +79,10 @@ int main( int argc, char* args[] )
                 }
 
                 //Render dot
-                dot.render( camera );
+                SDL_FRect currentClip;
+                churro.animate(frame, currentClip);
+
+                churro.render( camera, &currentClip);
 
                 //Update screen
                 SDL_RenderPresent( gRenderer );

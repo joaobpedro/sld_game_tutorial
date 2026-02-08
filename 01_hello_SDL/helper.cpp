@@ -16,10 +16,12 @@ SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
 
 //Scene textures
-LTexture gDotTexture;
+LTexture gCharacterTexture;
 LTexture gTileTexture;
 
-SDL_FRect gTileClips[ 12 ];
+const int TOTAL_TILE_SPRITES = 12;
+
+SDL_FRect gTileClips[ TOTAL_TILE_SPRITES ];
 
 bool init()
 {
@@ -59,14 +61,14 @@ bool loadMedia( Tile* tiles[] )
     bool success = true;
 
     //Load dot texture
-    if( !gDotTexture.loadFromFile( "churro_game_main.bmp" ) )
+    if( !gCharacterTexture.loadFromFile( "../Assets/churro_running.png" ) )
     {
         printf( "Failed to load dot texture!\n" );
         success = false;
     }
 
     //Load tile texture
-    if( !gTileTexture.loadFromFile( "tiles.png" ) )
+    if( !gTileTexture.loadFromFile( "../Assets/tiles.png" ) )
     {
         printf( "Failed to load tile set texture!\n" );
         success = false;
@@ -95,7 +97,7 @@ void close( Tile* tiles[] )
     }
 
     //Free loaded images
-    gDotTexture.free();
+    gCharacterTexture.free();
     gTileTexture.free();
 
     //Destroy window
@@ -162,7 +164,7 @@ bool setTiles( Tile* tiles[] )
     int x = 0, y = 0;
 
     //Open the map
-    std::ifstream map( "lazy.map" );
+    std::ifstream map( "../Assets/lazy.map" );
 
     //If the map couldn't be loaded
     if( map.fail() )

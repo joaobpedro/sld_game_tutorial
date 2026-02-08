@@ -13,7 +13,7 @@ extern const int LEVEL_HEIGHT;
 extern const int TILE_WIDTH;
 extern const int TILE_HEIGHT;
 extern const int TOTAL_TILES;
-extern const int TOTAL_TILE_SPRITES;
+// extern constexpr int TOTAL_TILE_SPRITES;
 
 //The different tile sprites
 extern const int TILE_RED;

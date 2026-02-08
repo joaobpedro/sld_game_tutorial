@@ -1,11 +1,12 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <SDL3_image/SDL_image.h>
+#include <fstream>
 #include "character.h"
 #include "globals.h"
 #include "helper.h"
 
-Dot::Dot()
+character::character()
 {
     //Initialize the collision box
     mBox.x = 0;
@@ -18,7 +19,26 @@ Dot::Dot()
     mVelY = 0;
 }
 
-void Dot::handleEvent( SDL_Event& e )
+void character::animate(int& frame, SDL_FRect& currentClip) {
+    // this is just the selection of the sprite clip to show given a frame
+    if( frame / mkWakingAnimationFramesPerSprite >= mkWakingAnimationFrames )
+    {
+        frame = 0;
+    }
+
+    //Set sprite clips
+    SDL_FRect spriteClips[ mkWakingAnimationFrames ] = {
+        { mkSpriteWidth * 0,              0.f, mkSpriteWidth, mkSpriteHeight },
+        { mkSpriteWidth * 1 + mpadding,   0.f, mkSpriteWidth, mkSpriteHeight },
+        { mkSpriteWidth * 2 + 2*mpadding, 0.f, mkSpriteWidth, mkSpriteHeight },
+        { mkSpriteWidth * 3 + 3*mpadding, 0.f, mkSpriteWidth, mkSpriteHeight },
+        { mkSpriteWidth * 4 + 4*mpadding, 0.f, mkSpriteWidth, mkSpriteHeight },
+        { mkSpriteWidth * 5 + 5*mpadding, 0.f, mkSpriteWidth, mkSpriteHeight },
+    };
+    currentClip =  spriteClips[ frame / mkWakingAnimationFramesPerSprite ];
+};
+
+void character::handleEvent( SDL_Event& e )
 {
     //If a key was pressed
     if( e.type == SDL_EVENT_KEY_DOWN && e.key.repeat == 0 )
@@ -46,7 +66,7 @@ void Dot::handleEvent( SDL_Event& e )
     }
 }
 
-void Dot::move( Tile *tiles[] )
+void character::move( Tile *tiles[] )
 {
     //Move the dot left or right
     mBox.x += mVelX;
@@ -69,7 +89,7 @@ void Dot::move( Tile *tiles[] )
     }
 }
 
-void Dot::setCamera( SDL_Rect& camera )
+void character::setCamera( SDL_Rect& camera )
 {
     //Center the camera over the dot
     camera.x = ( mBox.x + DOT_WIDTH / 2 ) - SCREEN_WIDTH / 2;
@@ -94,9 +114,9 @@ void Dot::setCamera( SDL_Rect& camera )
     }
 }
 
-void Dot::render( SDL_Rect& camera )
+void character::render( SDL_Rect& camera, SDL_FRect*  clip)
 {
     //Show the dot
     //here I can define the redering
-    gDotTexture.render( mBox.x - camera.x, mBox.y - camera.y );
+    gCharacterTexture.render( mBox.x - camera.x, mBox.y - camera.y, clip);
 }
