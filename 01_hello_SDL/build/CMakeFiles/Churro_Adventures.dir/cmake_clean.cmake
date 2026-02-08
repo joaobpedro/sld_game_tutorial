@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Churro_Adventures.dir/link.d"
   "CMakeFiles/Churro_Adventures.dir/character.cpp.o"
   "CMakeFiles/Churro_Adventures.dir/character.cpp.o.d"
   "CMakeFiles/Churro_Adventures.dir/globals.cpp.o"

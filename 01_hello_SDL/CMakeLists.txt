@@ -8,7 +8,7 @@ project(Churro_Adventures CXX)
 set(SOURCE_DIR ./)
 
 # Collect all source files from the source directory
-file(GLOB SOURCES "${SOURCE_DIR}/*.cpp" "${SOURCE_DIR}/*.h")
+file(GLOB SOURCES "${SOURCE_DIR}/*.cpp")
 
 # Add the executable target
 # The second argument is the list of all source files

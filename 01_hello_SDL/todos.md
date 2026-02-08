@@ -3,6 +3,7 @@
   * [x] make a class? for the global constants
   * [x] organize folder, right its a mess
   * [x] make individual classes for the different compenents
+  * [x] !! make sure this compiles on omarchy
   * [ ] make churro walk when playing in the current game
   * [ ] make a tree tile, something more aligned with the farm enviroment
   * [ ] make Selma character

@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/joao/source/01_GameCpp/01_hello_SDL/main.cpp" "CMakeFiles/Churro_Adventures.dir/main.cpp.o" "gcc" "CMakeFiles/Churro_Adventures.dir/main.cpp.o.d"
   "/home/joao/source/01_GameCpp/01_hello_SDL/texture.cpp" "CMakeFiles/Churro_Adventures.dir/texture.cpp.o" "gcc" "CMakeFiles/Churro_Adventures.dir/texture.cpp.o.d"
   "/home/joao/source/01_GameCpp/01_hello_SDL/tile.cpp" "CMakeFiles/Churro_Adventures.dir/tile.cpp.o" "gcc" "CMakeFiles/Churro_Adventures.dir/tile.cpp.o.d"
+  "" "Churro_Adventures" "gcc" "CMakeFiles/Churro_Adventures.dir/link.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
