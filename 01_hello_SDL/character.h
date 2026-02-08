@@ -47,9 +47,9 @@ class character
         //The velocity of the dot
         int mVelX, mVelY;
 
-        const float mkSpriteWidth {120};
-        const float mkSpriteHeight {120};
-        const float mpadding {35};
+        const float mkSpriteWidth {60};
+        const float mkSpriteHeight {60};
+        const float mpadding {18};
         const int mkWakingAnimationFrames {6};
         const int mkWakingAnimationFramesPerSprite {6};
 };

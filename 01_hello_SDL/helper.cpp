@@ -61,7 +61,7 @@ bool loadMedia( Tile* tiles[] )
     bool success = true;
 
     //Load dot texture
-    if( !gCharacterTexture.loadFromFile( "../Assets/churro_running.png" ) )
+    if( !gCharacterTexture.loadFromFile( "../Assets/churro_running_50.png" ) )
     {
         printf( "Failed to load dot texture!\n" );
         success = false;
