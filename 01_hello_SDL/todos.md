@@ -5,10 +5,13 @@
   * [x] make individual classes for the different compenents
   * [x] !! make sure this compiles on omarchy - just delete the build folder and config cmake again
   * [x] [[animate churro]]
-  * [ ] make a tree tile, something more aligned with the farm enviroment
+  * [x] make a tree tile, something more aligned with the farm enviroment
+  * [ ] make monsters come alive
+  * [ ] expand the level, this one is very small
   * [ ] make Selma character
   * [ ] include Selma in the game
-  * [ ] start to right a story
+  * [ ] start to write a story
+  * [ ] make churros assests more professional
   * [ ] make the assets required from the story
   * [ ] make different levels for different parts of the story
 
