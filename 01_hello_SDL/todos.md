@@ -25,3 +25,7 @@
         * [ ] one running up
         * [ ] one running down
         * [ ] one stopped
+  * [ ] need to load the files all at the same time
+    * [ ] so I will have an array of textures
+    * [ ] see the documentation on this
+

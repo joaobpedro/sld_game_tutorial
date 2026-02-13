@@ -16,7 +16,7 @@ SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
 
 //Scene textures
-LTexture gCharacterTexture;
+LTexture gCharacterTexture[KEY_PRESS_SURFACE_TOTAL];
 LTexture gTileTexture;
 
 const int TOTAL_TILE_SPRITES = 12;
@@ -61,11 +61,41 @@ bool loadMedia( Tile* tiles[] )
     bool success = true;
 
     //Load dot texture
-    if( !gCharacterTexture.loadFromFile( "../Assets/churro_running_50.png" ) )
+    if( !gCharacterTexture[KEY_PRESS_SURFACE_DEFAULT].loadFromFile( "../Assets/churro_standing.png" ) )
     {
         printf( "Failed to load dot texture!\n" );
         success = false;
     }
+
+    if( !gCharacterTexture[KEY_PRESS_SURFACE_UP].loadFromFile( "../Assets/churro_running_up.png" ) )
+    {
+        printf( "Failed to load dot texture!\n" );
+        success = false;
+    }
+
+    if( !gCharacterTexture[KEY_PRESS_SURFACE_DOWN].loadFromFile( "../Assets/churro_running_down.png" ) )
+    {
+        printf( "Failed to load dot texture!\n" );
+        success = false;
+    }
+
+    if( !gCharacterTexture[KEY_PRESS_SURFACE_LEFT].loadFromFile( "../Assets/churro_running_left.png" ) )
+    {
+        printf( "Failed to load dot texture!\n" );
+        success = false;
+    }
+
+    if( !gCharacterTexture[KEY_PRESS_SURFACE_RIGHT].loadFromFile( "../Assets/churro_running_right.png" ) )
+    {
+        printf( "Failed to load dot texture!\n" );
+        success = false;
+    }
+
+    // if( !gCharacterTexture[KEY_PRESS_SURFACE_DEFAULT].loadFromFile( "../Assets/churro_standing.png" ) )
+    // {
+    //     printf( "Failed to load dot texture!\n" );
+    //     success = false;
+    // }
 
     //Load tile texture
     if( !gTileTexture.loadFromFile( "../Assets/forest_tiles_small.png" ) )
@@ -97,7 +127,11 @@ void close( Tile* tiles[] )
     }
 
     //Free loaded images
-    gCharacterTexture.free();
+    // gCharacterTexture[].free();
+    for (auto &texture : gCharacterTexture) {
+        texture.free();
+
+    }
     gTileTexture.free();
 
     //Destroy window

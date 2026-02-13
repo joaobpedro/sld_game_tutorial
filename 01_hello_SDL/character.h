@@ -16,11 +16,11 @@ class character
 {
     public:
         //The dimensions of the dot
-        static const int DOT_WIDTH = 20;
-        static const int DOT_HEIGHT = 20;
+        static const int DOT_WIDTH = 60;
+        static const int DOT_HEIGHT = 60;
 
         //Maximum axis velocity of the dot
-        static const int DOT_VEL = 10;
+        static const int DOT_VEL = 7;
 
         //Initializes the variables
         character();
@@ -47,11 +47,13 @@ class character
         //The velocity of the dot
         int mVelX, mVelY;
 
-        const float mkSpriteWidth {60};
+        const float mkSpriteWidth {1};
         const float mkSpriteHeight {60};
-        const float mpadding {18};
+        const float mpadding {1};
         const int mkWakingAnimationFrames {6};
         const int mkWakingAnimationFramesPerSprite {6};
+
+        int m_movement{0};
 };
 
 #endif //exit class

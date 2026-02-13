@@ -1,122 +1,152 @@
+#include "character.h"
+#include "globals.h"
+#include "helper.h"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <SDL3_image/SDL_image.h>
 #include <fstream>
-#include "character.h"
-#include "globals.h"
-#include "helper.h"
 
-character::character()
-{
-    //Initialize the collision box
+character::character() {
+    // Initialize the collision box
     mBox.x = 0;
     mBox.y = 0;
     mBox.w = DOT_WIDTH;
     mBox.h = DOT_HEIGHT;
 
-    //Initialize the velocity
+    // Initialize the velocity
     mVelX = 0;
     mVelY = 0;
 }
 
-void character::animate(int& frame, SDL_FRect& currentClip) {
-    // this is just the selection of the sprite clip to show given a frame
-    if( frame / mkWakingAnimationFramesPerSprite >= mkWakingAnimationFrames )
-    {
-        frame = 0;
-    }
-
-    //Set sprite clips
-    SDL_FRect spriteClips[ mkWakingAnimationFrames ] = {
-        { mkSpriteWidth * 0,              0.f, mkSpriteWidth, mkSpriteHeight },
-        { mkSpriteWidth * 1 + mpadding,   0.f, mkSpriteWidth, mkSpriteHeight },
-        { mkSpriteWidth * 2 + 2*mpadding, 0.f, mkSpriteWidth, mkSpriteHeight },
-        { mkSpriteWidth * 3 + 3*mpadding, 0.f, mkSpriteWidth, mkSpriteHeight },
-        { mkSpriteWidth * 4 + 4*mpadding, 0.f, mkSpriteWidth, mkSpriteHeight },
-        { mkSpriteWidth * 5 + 5*mpadding, 0.f, mkSpriteWidth, mkSpriteHeight },
-    };
-    currentClip =  spriteClips[ frame / mkWakingAnimationFramesPerSprite ];
-};
-
-void character::handleEvent( SDL_Event& e )
-{
-    //If a key was pressed
-    if( e.type == SDL_EVENT_KEY_DOWN && e.key.repeat == 0 )
-    {
-        //Adjust the velocity
-        switch( e.key.key )
-        {
-            case SDLK_UP: mVelY -= DOT_VEL; break;
-            case SDLK_DOWN: mVelY += DOT_VEL; break;
-            case SDLK_LEFT: mVelX -= DOT_VEL; break;
-            case SDLK_RIGHT: mVelX += DOT_VEL; break;
+void character::handleEvent(SDL_Event &e) {
+    // If a key was pressed
+    if (e.type == SDL_EVENT_KEY_DOWN && e.key.repeat == 0) {
+        // Adjust the velocity
+        switch (e.key.key) {
+        case SDLK_UP:
+            mVelY -= DOT_VEL;
+            m_movement = KEY_PRESS_SURFACE_UP;
+            break;
+        case SDLK_DOWN:
+            mVelY += DOT_VEL;
+            m_movement = KEY_PRESS_SURFACE_DOWN;
+            break;
+        case SDLK_LEFT:
+            mVelX -= DOT_VEL;
+            m_movement = KEY_PRESS_SURFACE_LEFT;
+            break;
+        case SDLK_RIGHT:
+            mVelX += DOT_VEL;
+            m_movement = KEY_PRESS_SURFACE_RIGHT;
+            break;
         }
     }
-    //If a key was released
-    else if( e.type == SDL_EVENT_KEY_UP && e.key.repeat == 0 )
-    {
-        //Adjust the velocity
-        switch( e.key.key )
-        {
-            case SDLK_UP: mVelY += DOT_VEL; break;
-            case SDLK_DOWN: mVelY -= DOT_VEL; break;
-            case SDLK_LEFT: mVelX += DOT_VEL; break;
-            case SDLK_RIGHT: mVelX -= DOT_VEL; break;
+    // If a key was released
+    else if (e.type == SDL_EVENT_KEY_UP && e.key.repeat == 0) {
+        // Adjust the velocity
+        switch (e.key.key) {
+        case SDLK_UP:
+            mVelY += DOT_VEL;
+            m_movement = KEY_PRESS_SURFACE_DEFAULT;
+            break;
+        case SDLK_DOWN:
+            mVelY -= DOT_VEL;
+            m_movement = KEY_PRESS_SURFACE_DEFAULT;
+            break;
+        case SDLK_LEFT:
+            mVelX += DOT_VEL;
+            m_movement = KEY_PRESS_SURFACE_DEFAULT;
+            break;
+        case SDLK_RIGHT:
+            m_movement = KEY_PRESS_SURFACE_DEFAULT;
+            mVelX -= DOT_VEL;
+            break;
         }
     }
 }
 
-void character::move( Tile *tiles[] )
-{
-    //Move the dot left or right
+void character::animate(int &frame, SDL_FRect &currentClip) {
+    // this is just the selection of the sprite clip to show given a frame
+    if (frame / mkWakingAnimationFramesPerSprite >= mkWakingAnimationFrames) {
+        frame = 0;
+    }
+
+    float multiplier;
+    float pad_mul;
+    float add_const;
+
+    if (m_movement == KEY_PRESS_SURFACE_LEFT || m_movement == KEY_PRESS_SURFACE_RIGHT || m_movement == KEY_PRESS_SURFACE_DEFAULT) {
+        multiplier = 60;
+        pad_mul = 18;
+        add_const = 0;
+    } else if (m_movement == KEY_PRESS_SURFACE_DOWN){
+        multiplier = 24;
+        pad_mul = 34;
+        add_const = 0;
+    } else {
+        multiplier = 30;
+        pad_mul = 35;
+        add_const = 0;
+    }
+
+    SDL_FRect spriteClips[mkWakingAnimationFrames] = {
+        {mkSpriteWidth * 0, 0.f, mkSpriteWidth*multiplier, mkSpriteHeight},
+        {mkSpriteWidth*multiplier * 1 + (mpadding+add_const)*pad_mul, 0.f, mkSpriteWidth*multiplier, mkSpriteHeight},
+        {mkSpriteWidth*multiplier * 2 + 2 * (mpadding+add_const)*pad_mul, 0.f, mkSpriteWidth*multiplier, mkSpriteHeight},
+        {mkSpriteWidth*multiplier * 3 + 3 * (mpadding+add_const)*pad_mul, 0.f, mkSpriteWidth*multiplier, mkSpriteHeight},
+        {mkSpriteWidth*multiplier * 4 + 4 * (mpadding+add_const)*pad_mul, 0.f, mkSpriteWidth*multiplier, mkSpriteHeight},
+        {mkSpriteWidth*multiplier * 5 + 5 * (mpadding+add_const)*pad_mul, 0.f, mkSpriteWidth*multiplier, mkSpriteHeight},
+    };
+    // Set sprite clips
+    if (m_movement != KEY_PRESS_SURFACE_DEFAULT) {
+        currentClip = spriteClips[frame / mkWakingAnimationFramesPerSprite];
+    } else {
+        currentClip = spriteClips[0];
+    }
+};
+
+void character::move(Tile *tiles[]) {
+    // Move the dot left or right
     mBox.x += mVelX;
 
-    //If the dot went too far to the left or right or touched a wall
-    if( ( mBox.x < 0 ) || ( mBox.x + DOT_WIDTH > LEVEL_WIDTH ) || touchesWall( mBox, tiles ) )
-    {
-        //move back
+    // If the dot went too far to the left or right or touched a wall
+    if ((mBox.x < 0) || (mBox.x + DOT_WIDTH > LEVEL_WIDTH) || touchesWall(mBox, tiles)) {
+        // move back
         mBox.x -= mVelX;
     }
 
-    //Move the dot up or down
+    // Move the dot up or down
     mBox.y += mVelY;
 
-    //If the dot went too far up or down or touched a wall
-    if( ( mBox.y < 0 ) || ( mBox.y + DOT_HEIGHT > LEVEL_HEIGHT ) || touchesWall( mBox, tiles ) )
-    {
-        //move back
+    // If the dot went too far up or down or touched a wall
+    if ((mBox.y < 0) || (mBox.y + DOT_HEIGHT > LEVEL_HEIGHT) || touchesWall(mBox, tiles)) {
+        // move back
         mBox.y -= mVelY;
     }
 }
 
-void character::setCamera( SDL_Rect& camera )
-{
-    //Center the camera over the dot
-    camera.x = ( mBox.x + DOT_WIDTH / 2 ) - SCREEN_WIDTH / 2;
-    camera.y = ( mBox.y + DOT_HEIGHT / 2 ) - SCREEN_HEIGHT / 2;
+void character::setCamera(SDL_Rect &camera) {
+    // Center the camera over the dot
+    camera.x = (mBox.x + DOT_WIDTH / 2) - SCREEN_WIDTH / 2;
+    camera.y = (mBox.y + DOT_HEIGHT / 2) - SCREEN_HEIGHT / 2;
 
-    //Keep the camera in bounds
-    if( camera.x < 0 )
-    {
+    // Keep the camera in bounds
+    if (camera.x < 0) {
         camera.x = 0;
     }
-    if( camera.y < 0 )
-    {
+    if (camera.y < 0) {
         camera.y = 0;
     }
-    if( camera.x > LEVEL_WIDTH - camera.w )
-    {
+    if (camera.x > LEVEL_WIDTH - camera.w) {
         camera.x = LEVEL_WIDTH - camera.w;
     }
-    if( camera.y > LEVEL_HEIGHT - camera.h )
-    {
+    if (camera.y > LEVEL_HEIGHT - camera.h) {
         camera.y = LEVEL_HEIGHT - camera.h;
     }
 }
 
-void character::render( SDL_Rect& camera, SDL_FRect*  clip)
-{
-    //Show the dot
-    //here I can define the redering
-    gCharacterTexture.render( mBox.x - camera.x, mBox.y - camera.y, clip);
+void character::render(SDL_Rect &camera, SDL_FRect *clip) {
+    // Show the dot
+    // here I can define the redering
+    gCharacterTexture[m_movement].render(mBox.x - camera.x, mBox.y - camera.y, clip);
 }
