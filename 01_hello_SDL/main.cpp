@@ -1,6 +1,7 @@
 // Using SDL, SDL_image, strings, and file streams
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
+#include <SDL3/SDL_rect.h>
 #include <SDL3_image/SDL_image.h>
 // #include <string>
 // #include <fstream>
@@ -8,6 +9,7 @@
 #include "character.h"
 #include "globals.h"
 #include "helper.h"
+#include "monster.h"
 #include "tile.h"
 
 int main(int argc, char *args[]) {
@@ -30,6 +32,7 @@ int main(int argc, char *args[]) {
 
             // The dot that will be moving around on the screen
             character churro;
+            Monster monster;
 
             // Level camera
             SDL_Rect camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -69,8 +72,13 @@ int main(int argc, char *args[]) {
                 // Render dot
                 SDL_FRect currentClip;
                 churro.animate(frame, currentClip);
-
                 churro.render(camera, &currentClip);
+
+                // render monster
+                monster.move(tileSet);
+                SDL_FRect monsterClip;
+                monster.animate(frame, monsterClip);
+                monster.render(&monsterClip);
 
                 // Update screen
                 SDL_RenderPresent(gRenderer);

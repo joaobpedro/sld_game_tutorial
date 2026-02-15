@@ -125,10 +125,24 @@ CMakeFiles/Churro_Adventures.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Churro_Adventures.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joao/source/01_GameCpp/01_hello_SDL/main.cpp -o CMakeFiles/Churro_Adventures.dir/main.cpp.s
 
+CMakeFiles/Churro_Adventures.dir/monster.cpp.o: CMakeFiles/Churro_Adventures.dir/flags.make
+CMakeFiles/Churro_Adventures.dir/monster.cpp.o: /home/joao/source/01_GameCpp/01_hello_SDL/monster.cpp
+CMakeFiles/Churro_Adventures.dir/monster.cpp.o: CMakeFiles/Churro_Adventures.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joao/source/01_GameCpp/01_hello_SDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Churro_Adventures.dir/monster.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Churro_Adventures.dir/monster.cpp.o -MF CMakeFiles/Churro_Adventures.dir/monster.cpp.o.d -o CMakeFiles/Churro_Adventures.dir/monster.cpp.o -c /home/joao/source/01_GameCpp/01_hello_SDL/monster.cpp
+
+CMakeFiles/Churro_Adventures.dir/monster.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Churro_Adventures.dir/monster.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/joao/source/01_GameCpp/01_hello_SDL/monster.cpp > CMakeFiles/Churro_Adventures.dir/monster.cpp.i
+
+CMakeFiles/Churro_Adventures.dir/monster.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Churro_Adventures.dir/monster.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/joao/source/01_GameCpp/01_hello_SDL/monster.cpp -o CMakeFiles/Churro_Adventures.dir/monster.cpp.s
+
 CMakeFiles/Churro_Adventures.dir/texture.cpp.o: CMakeFiles/Churro_Adventures.dir/flags.make
 CMakeFiles/Churro_Adventures.dir/texture.cpp.o: /home/joao/source/01_GameCpp/01_hello_SDL/texture.cpp
 CMakeFiles/Churro_Adventures.dir/texture.cpp.o: CMakeFiles/Churro_Adventures.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joao/source/01_GameCpp/01_hello_SDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Churro_Adventures.dir/texture.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joao/source/01_GameCpp/01_hello_SDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Churro_Adventures.dir/texture.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Churro_Adventures.dir/texture.cpp.o -MF CMakeFiles/Churro_Adventures.dir/texture.cpp.o.d -o CMakeFiles/Churro_Adventures.dir/texture.cpp.o -c /home/joao/source/01_GameCpp/01_hello_SDL/texture.cpp
 
 CMakeFiles/Churro_Adventures.dir/texture.cpp.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/Churro_Adventures.dir/texture.cpp.s: cmake_force
 CMakeFiles/Churro_Adventures.dir/tile.cpp.o: CMakeFiles/Churro_Adventures.dir/flags.make
 CMakeFiles/Churro_Adventures.dir/tile.cpp.o: /home/joao/source/01_GameCpp/01_hello_SDL/tile.cpp
 CMakeFiles/Churro_Adventures.dir/tile.cpp.o: CMakeFiles/Churro_Adventures.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joao/source/01_GameCpp/01_hello_SDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Churro_Adventures.dir/tile.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/joao/source/01_GameCpp/01_hello_SDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Churro_Adventures.dir/tile.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Churro_Adventures.dir/tile.cpp.o -MF CMakeFiles/Churro_Adventures.dir/tile.cpp.o.d -o CMakeFiles/Churro_Adventures.dir/tile.cpp.o -c /home/joao/source/01_GameCpp/01_hello_SDL/tile.cpp
 
 CMakeFiles/Churro_Adventures.dir/tile.cpp.i: cmake_force
@@ -159,6 +173,7 @@ Churro_Adventures_OBJECTS = \
 "CMakeFiles/Churro_Adventures.dir/globals.cpp.o" \
 "CMakeFiles/Churro_Adventures.dir/helper.cpp.o" \
 "CMakeFiles/Churro_Adventures.dir/main.cpp.o" \
+"CMakeFiles/Churro_Adventures.dir/monster.cpp.o" \
 "CMakeFiles/Churro_Adventures.dir/texture.cpp.o" \
 "CMakeFiles/Churro_Adventures.dir/tile.cpp.o"
 
@@ -169,13 +184,14 @@ Churro_Adventures: CMakeFiles/Churro_Adventures.dir/character.cpp.o
 Churro_Adventures: CMakeFiles/Churro_Adventures.dir/globals.cpp.o
 Churro_Adventures: CMakeFiles/Churro_Adventures.dir/helper.cpp.o
 Churro_Adventures: CMakeFiles/Churro_Adventures.dir/main.cpp.o
+Churro_Adventures: CMakeFiles/Churro_Adventures.dir/monster.cpp.o
 Churro_Adventures: CMakeFiles/Churro_Adventures.dir/texture.cpp.o
 Churro_Adventures: CMakeFiles/Churro_Adventures.dir/tile.cpp.o
 Churro_Adventures: CMakeFiles/Churro_Adventures.dir/build.make
 Churro_Adventures: /usr/local/lib/libSDL3_image.so.0.4.0
 Churro_Adventures: /usr/local/lib/libSDL3.so.0.4.0
 Churro_Adventures: CMakeFiles/Churro_Adventures.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/joao/source/01_GameCpp/01_hello_SDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable Churro_Adventures"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/joao/source/01_GameCpp/01_hello_SDL/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable Churro_Adventures"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Churro_Adventures.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

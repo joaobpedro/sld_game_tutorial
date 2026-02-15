@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Churro_Adventures.dir/helper.cpp.o.d"
   "CMakeFiles/Churro_Adventures.dir/main.cpp.o"
   "CMakeFiles/Churro_Adventures.dir/main.cpp.o.d"
+  "CMakeFiles/Churro_Adventures.dir/monster.cpp.o"
+  "CMakeFiles/Churro_Adventures.dir/monster.cpp.o.d"
   "CMakeFiles/Churro_Adventures.dir/texture.cpp.o"
   "CMakeFiles/Churro_Adventures.dir/texture.cpp.o.d"
   "CMakeFiles/Churro_Adventures.dir/tile.cpp.o"

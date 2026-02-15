@@ -225,6 +225,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Churro_Adventures.dir/build.make CMakeFiles/Churro_Adventures.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+monster.o: monster.cpp.o
+.PHONY : monster.o
+
+# target to build an object file
+monster.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Churro_Adventures.dir/build.make CMakeFiles/Churro_Adventures.dir/monster.cpp.o
+.PHONY : monster.cpp.o
+
+monster.i: monster.cpp.i
+.PHONY : monster.i
+
+# target to preprocess a source file
+monster.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Churro_Adventures.dir/build.make CMakeFiles/Churro_Adventures.dir/monster.cpp.i
+.PHONY : monster.cpp.i
+
+monster.s: monster.cpp.s
+.PHONY : monster.s
+
+# target to generate assembly for a file
+monster.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Churro_Adventures.dir/build.make CMakeFiles/Churro_Adventures.dir/monster.cpp.s
+.PHONY : monster.cpp.s
+
 texture.o: texture.cpp.o
 .PHONY : texture.o
 
@@ -294,6 +318,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... monster.o"
+	@echo "... monster.i"
+	@echo "... monster.s"
 	@echo "... texture.o"
 	@echo "... texture.i"
 	@echo "... texture.s"

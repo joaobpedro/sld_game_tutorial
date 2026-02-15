@@ -34,6 +34,7 @@ extern SDL_Renderer* gRenderer;
 
 //Scene textures
 extern LTexture gCharacterTexture[];
+extern LTexture gMonsterTexture;
 extern LTexture gTileTexture;
 
 extern SDL_FRect gTileClips[];
