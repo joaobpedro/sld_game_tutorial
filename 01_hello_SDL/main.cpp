@@ -55,10 +55,12 @@ int main(int argc, char *args[]) {
                 frame++;
                 // printf("Frame number: %d \n", frame);
 
+                // render monster
+                monster.move(tileSet);
+
                 // Move the dot
                 churro.move(tileSet);
                 churro.setCamera(camera);
-                // maybe dot.animate
 
                 // Clear screen
                 SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -69,16 +71,14 @@ int main(int argc, char *args[]) {
                     tileSet[i]->render(camera);
                 }
 
+                SDL_FRect monsterClip;
+                monster.animate(frame, monsterClip);
+                monster.render(camera, &monsterClip);
+
                 // Render dot
                 SDL_FRect currentClip;
                 churro.animate(frame, currentClip);
                 churro.render(camera, &currentClip);
-
-                // render monster
-                monster.move(tileSet);
-                SDL_FRect monsterClip;
-                monster.animate(frame, monsterClip);
-                monster.render(&monsterClip);
 
                 // Update screen
                 SDL_RenderPresent(gRenderer);

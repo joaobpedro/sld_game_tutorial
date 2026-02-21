@@ -7,6 +7,7 @@
   * [x] [[animate churro]]
   * [x] make a tree tile, something more aligned with the farm enviroment
   * [ ] make monsters come alive
+  * [ ] add musical effects to make the game feel more like a game
   * [ ] give health properties and lives? maybe
   * [ ] expand the level, this one is very small
   * [ ] make Selma character
@@ -34,7 +35,8 @@
     * [x] see the documentation on this
 
 ## make monters come alive
-  * [ ] make the monster sprites
-  * [ ] make the monster character, i.e., rending
+  * [x] make the monster sprites
+  * [x] make the monster character, i.e., rending
   * [ ] make the collision assessment
+        * [ ] the collisions are following the camera, need to make them camera independent
   * [ ] give health property so Churro can kill the monsters

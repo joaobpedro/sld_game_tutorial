@@ -116,8 +116,8 @@ void Monster::move(Tile *tiles[]) {
 //     }
 // }
 
-void Monster::render(SDL_FRect *clip) {
+void Monster::render(SDL_Rect &camera, SDL_FRect *clip) {
     // Show the dot
     // here I can define the redering
-    gMonsterTexture.render(mBox.x, mBox.y, clip);
+    gMonsterTexture.render(mBox.x-camera.x, mBox.y-camera.y, clip);
 }

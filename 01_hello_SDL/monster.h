@@ -1,4 +1,4 @@
-// need some guards here
+// eed ome guards here
 #ifndef MONSTER_H_
 #define MONSTER_H_
 // #include "globals.h"
@@ -30,7 +30,7 @@ class Monster {
     /* void setCamera( SDL_Rect& camera ); */
 
     // Shows the dot on the screen
-    void render(SDL_FRect *clip);
+    void render(SDL_Rect &camera, SDL_FRect *clip);
 
     // animate churro
     void animate(int &frame, SDL_FRect &currentClip);
