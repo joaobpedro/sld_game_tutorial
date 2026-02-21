@@ -1,6 +1,7 @@
 #include "monster.h"
 #include "globals.h"
 #include "helper.h"
+#include "iostream"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <SDL3_image/SDL_image.h>
@@ -77,7 +78,7 @@ void Monster::animate(int &frame, SDL_FRect &currentClip) {
     currentClip = spriteClips[frame / mkWakingAnimationFramesPerSprite];
 };
 
-void Monster::move(Tile *tiles[]) {
+void Monster::move(Tile *tiles[], SDL_Rect character_pos) {
     mBox.x += mVelX;
 
     // If the dot went too far to the left or right or touched a wall
@@ -93,6 +94,17 @@ void Monster::move(Tile *tiles[]) {
     if ((mBox.y < 0) || (mBox.y + MONSTER_HEIGHT > LEVEL_HEIGHT) || touchesWall(mBox, tiles)) {
         // move back
         mVelY = mVelY * (-1);
+    }
+
+    // add the collision with churro here
+    if (checkCollision(mBox, character_pos)){
+        m_health -= 5;
+        mVelX = mVelX * (-1);
+        mVelY = mVelY * (-1);
+        std::cout << "Monster health is " << m_health << std::endl;
+        if (m_health < 0) {
+        // terminate monster
+        }
     }
 }
 
@@ -120,4 +132,14 @@ void Monster::render(SDL_Rect &camera, SDL_FRect *clip) {
     // Show the dot
     // here I can define the redering
     gMonsterTexture.render(mBox.x-camera.x, mBox.y-camera.y, clip);
+}
+
+void Monster::collision_character(SDL_Rect churros_box){
+    if (checkCollision(mBox, churros_box)){
+        m_health -= 5;
+        std::cout << "Monster health is " << m_health << std::endl;
+        if (m_health<=0){
+        // terminate monster
+        }
+    }
 }

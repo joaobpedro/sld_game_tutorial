@@ -150,3 +150,7 @@ void character::render(SDL_Rect &camera, SDL_FRect *clip) {
     // here I can define the redering
     gCharacterTexture[m_movement].render(mBox.x - camera.x, mBox.y - camera.y, clip);
 }
+
+SDL_Rect character::get_position(){
+    return mBox;
+}

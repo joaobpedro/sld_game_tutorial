@@ -40,6 +40,9 @@ class character
         // animate churro
         void animate(int& frame, SDL_FRect& currentClip);
 
+        // return churros positions
+        SDL_Rect get_position();
+
     private:
         //Collision box of the dot
         SDL_Rect mBox;

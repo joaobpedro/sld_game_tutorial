@@ -24,7 +24,7 @@ class Monster {
     /* void handleEvent( SDL_Event& e ); */
 
     // Moves the dot and check collision against tiles
-    void move(Tile *tiles[]);
+    void move(Tile *tiles[], SDL_Rect character_pos);
 
     // Centers the camera over the dot
     /* void setCamera( SDL_Rect& camera ); */
@@ -35,11 +35,14 @@ class Monster {
     // animate churro
     void animate(int &frame, SDL_FRect &currentClip);
 
+    // check collision with churro
+    void collision_character(SDL_Rect churros_box);
+
   private:
     // Collision box of the dot
     SDL_Rect mBox;
 
-    float m_health = 0;
+    double m_health = 100;
 
     // The velocity of the dot
     int mVelX, mVelY;

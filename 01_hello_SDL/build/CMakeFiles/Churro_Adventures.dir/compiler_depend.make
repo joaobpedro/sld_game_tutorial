@@ -884,6 +884,7 @@ CMakeFiles/Churro_Adventures.dir/monster.cpp.o: /home/joao/source/01_GameCpp/01_
   /usr/include/c++/13/initializer_list \
   /usr/include/c++/13/ios \
   /usr/include/c++/13/iosfwd \
+  /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
   /usr/include/c++/13/new \
   /usr/include/c++/13/ostream \
@@ -1587,6 +1588,8 @@ CMakeFiles/Churro_Adventures.dir/tile.cpp.o: /home/joao/source/01_GameCpp/01_hel
   /usr/local/include/SDL3/SDL_video.h \
   /usr/local/include/SDL3_image/SDL_image.h
 
+
+/usr/include/c++/13/iostream:
 
 /home/joao/source/01_GameCpp/01_hello_SDL/monster.cpp:
 

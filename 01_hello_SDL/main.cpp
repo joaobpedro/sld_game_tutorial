@@ -56,11 +56,14 @@ int main(int argc, char *args[]) {
                 // printf("Frame number: %d \n", frame);
 
                 // render monster
-                monster.move(tileSet);
 
                 // Move the dot
                 churro.move(tileSet);
                 churro.setCamera(camera);
+
+                // check collision with churro
+                SDL_Rect churro_position = churro.get_position();
+                monster.move(tileSet, churro_position);
 
                 // Clear screen
                 SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
