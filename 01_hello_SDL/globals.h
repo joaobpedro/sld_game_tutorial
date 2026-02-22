@@ -1,6 +1,8 @@
 #ifndef TEXTURE_H_
 #define TEXTURE_H_
 
+#include<SDL3_mixer/SDL_mixer.h>
+
 //Screen dimension constants
 extern const int SCREEN_WIDTH;
 extern const int SCREEN_HEIGHT;
@@ -29,6 +31,7 @@ extern const int TILE_BOTTOMLEFT;
 extern const int TILE_LEFT ;
 extern const int TILE_TOPLEFT ;
 
+// music variable
 
 //Key press surfaces constants
 enum KeyPressSurfaces

@@ -80,6 +80,7 @@ CMakeFiles/Churro_Adventures.dir/main.cpp.o: \
  /usr/local/include/SDL3/SDL_oldnames.h \
  /usr/local/include/SDL3/SDL_main.h \
  /usr/local/include/SDL3_image/SDL_image.h \
+ /usr/local/include/SDL3_mixer/SDL_mixer.h \
  /home/joao/source/01_GameCpp/01_hello_SDL/character.h \
  /home/joao/source/01_GameCpp/01_hello_SDL/tile.h \
  /home/joao/source/01_GameCpp/01_hello_SDL/globals.h \

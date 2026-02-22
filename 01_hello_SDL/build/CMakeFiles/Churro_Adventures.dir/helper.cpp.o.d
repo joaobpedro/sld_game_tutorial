@@ -79,7 +79,8 @@ CMakeFiles/Churro_Adventures.dir/helper.cpp.o: \
  /usr/local/include/SDL3/SDL_version.h \
  /usr/local/include/SDL3/SDL_oldnames.h \
  /usr/local/include/SDL3/SDL_main.h \
- /usr/local/include/SDL3_image/SDL_image.h /usr/include/c++/13/fstream \
+ /usr/local/include/SDL3_image/SDL_image.h \
+ /usr/local/include/SDL3_mixer/SDL_mixer.h /usr/include/c++/13/fstream \
  /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

@@ -82,6 +82,7 @@ CMakeFiles/Churro_Adventures.dir/tile.cpp.o: \
  /usr/local/include/SDL3/SDL_main.h \
  /usr/local/include/SDL3_image/SDL_image.h \
  /home/joao/source/01_GameCpp/01_hello_SDL/globals.h \
+ /usr/local/include/SDL3_mixer/SDL_mixer.h \
  /home/joao/source/01_GameCpp/01_hello_SDL/helper.h \
  /usr/include/c++/13/string /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \

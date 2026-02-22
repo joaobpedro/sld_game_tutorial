@@ -2,6 +2,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <SDL3_image/SDL_image.h>
+#include <SDL3_mixer/SDL_mixer.h>
 #include <fstream>
 #include <string>
 
@@ -44,6 +45,7 @@ bool init() {
             // Initialize renderer color
             SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
         }
+        // initialize sound
     }
 
     return success;

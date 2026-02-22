@@ -15,6 +15,7 @@ file(GLOB SOURCES "${SOURCE_DIR}/*.cpp")
 add_executable(Churro_Adventures ${SOURCES})
 find_package(SDL3 REQUIRED)
 find_package(SDL3_image REQUIRED)
+find_package(SDL3_mixer REQUIRED)
 
 # Specify include directories so the compiler can find header files
-target_link_libraries(Churro_Adventures PRIVATE SDL3::SDL3 SDL3_image::SDL3_image)
+target_link_libraries(Churro_Adventures PRIVATE SDL3::SDL3 SDL3_image::SDL3_image SDL3_mixer::SDL3_mixer)
