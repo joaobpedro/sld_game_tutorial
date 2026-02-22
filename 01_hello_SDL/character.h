@@ -5,7 +5,7 @@
 #include <SDL3/SDL_main.h>
 #include <SDL3_image/SDL_image.h>
 #include "tile.h"
-#include "globals.h"
+// #include "globals.h"
 /* #include <string> */
 /* #include <fstream> */
 

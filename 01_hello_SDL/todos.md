@@ -41,3 +41,22 @@
   * [ ] make the collision assessment
         * [x] the collisions are following the camera, need to make them camera independent
   * [ ] give health property so Churro can kill the monsters !!!!!!!!!!!!!!!!!!!!!!!!
+
+## Entity System
+* [ ] build an entity manager
+* [ ] define how to spwan and kill entities
+* [ ] define how to store entities
+* [ ] see how to make entities modular
+
+
+            ENTITY MANAGER
+                |
+            ENTITY ARRAY - if in array - RENDER
+                /\
+            ADD   REMOVE
+
+### Entity Manager
+* [ ] needs a maximum entity value, we wil start with 1024
+* [ ] needs an entity array, to keep track of all the entityies in the game
+* [ ] needs a method to add and to remove entities in the array
+* [ ] I need to use templates to add a components and such
