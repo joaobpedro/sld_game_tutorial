@@ -38,25 +38,31 @@
 ## make monters come alive
   * [x] make the monster sprites
   * [x] make the monster character, i.e., rending
-  * [ ] make the collision assessment
+  * [x] make the collision assessment
         * [x] the collisions are following the camera, need to make them camera independent
-  * [ ] give health property so Churro can kill the monsters !!!!!!!!!!!!!!!!!!!!!!!!
+  * [x] give health property so Churro can kill the monsters !!!!!!!!!!!!!!!!!!!!!!!!
 
 ## Entity System
 * [ ] build an entity manager
-* [ ] define how to spwan and kill entities
-* [ ] define how to store entities
-* [ ] see how to make entities modular
-
+* [x] see how to make entities modular
 
             ENTITY MANAGER
                 |
             ENTITY ARRAY - if in array - RENDER
                 /\
             ADD   REMOVE
+* [ ] re-write all game functions
+    * [ ] load media -> set_tiles
+    * [ ] render
+    * [ ] move
+    * [ ] set_camera
+    ...
 
 ### Entity Manager
-* [ ] needs a maximum entity value, we wil start with 1024
-* [ ] needs an entity array, to keep track of all the entityies in the game
-* [ ] needs a method to add and to remove entities in the array
-* [ ] I need to use templates to add a components and such
+* [x] needs a maximum entity value, we wil start with 1024
+* [x] needs an entity array, to keep track of all the entityies in the game
+* [x] needs a method to add and to remove entities in the array
+* [x] I need to use templates to add a components and such
+* [ ] entities will not be modular, they will have all the 
+data for all components
+
