@@ -11,14 +11,11 @@ struct Entity{
 
     // here I can hold all my things propeties
     // like position and heatlh
-    //
 
 
 
 
-    // later i need to have properies that are here
     // just to manage my fixed array of things
-
     thing_Idx ParentIdx;
     thing_Idx FirstChild;
     thing_Idx NextSibling;
