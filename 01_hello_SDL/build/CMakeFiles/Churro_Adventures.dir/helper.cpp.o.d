@@ -209,4 +209,5 @@ CMakeFiles/Churro_Adventures.dir/helper.cpp.o: \
  /home/joao/source/01_GameCpp/01_hello_SDL/globals.h \
  /home/joao/source/01_GameCpp/01_hello_SDL/helper.h \
  /home/joao/source/01_GameCpp/01_hello_SDL/texture.h \
- /home/joao/source/01_GameCpp/01_hello_SDL/tile.h
+ /home/joao/source/01_GameCpp/01_hello_SDL/tile.h \
+ /home/joao/source/01_GameCpp/01_hello_SDL/entity.h

@@ -207,9 +207,6 @@ SDL3_image_DIR:PATH=/usr/local/lib/cmake/SDL3_image
 //The directory containing a CMake configuration file for SDL3_mixer.
 SDL3_mixer_DIR:PATH=/usr/local/lib/cmake/SDL3_mixer
 
-//The directory containing a CMake configuration file for SLD3_mixer.
-SLD3_mixer_DIR:PATH=SLD3_mixer_DIR-NOTFOUND
-
 
 ########################
 # INTERNAL cache entries

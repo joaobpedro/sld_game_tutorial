@@ -52,11 +52,13 @@
                 /\
             ADD   REMOVE
 * [ ] re-write all game functions
-    * [ ] load media -> set_tiles
-    * [ ] render
-    * [ ] move
-    * [ ] set_camera
+    * [x] load media -> set_tiles
+    * [x] render
+    * [x] move
+    * [x] set_camera
     ...
+* [ ] FIXME: there is a bug in the event handling and the access to the player data is not as I imagined
+need to check the pointer/ref/adresses stuff.
 
 ### Entity Manager
 * [x] needs a maximum entity value, we wil start with 1024

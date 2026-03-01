@@ -81,8 +81,6 @@ CMakeFiles/Churro_Adventures.dir/main.cpp.o: \
  /usr/local/include/SDL3/SDL_main.h \
  /usr/local/include/SDL3_image/SDL_image.h \
  /usr/local/include/SDL3_mixer/SDL_mixer.h \
- /home/joao/source/01_GameCpp/01_hello_SDL/character.h \
- /home/joao/source/01_GameCpp/01_hello_SDL/tile.h \
  /home/joao/source/01_GameCpp/01_hello_SDL/globals.h \
  /home/joao/source/01_GameCpp/01_hello_SDL/helper.h \
  /usr/include/c++/13/string /usr/include/c++/13/bits/requires_hosted.h \
@@ -211,4 +209,5 @@ CMakeFiles/Churro_Adventures.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
  /usr/include/c++/13/bits/fstream.tcc \
  /home/joao/source/01_GameCpp/01_hello_SDL/texture.h \
- /home/joao/source/01_GameCpp/01_hello_SDL/monster.h
+ /home/joao/source/01_GameCpp/01_hello_SDL/tile.h \
+ /home/joao/source/01_GameCpp/01_hello_SDL/entity.h

@@ -8,11 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/joao/source/01_GameCpp/01_hello_SDL/character.cpp" "CMakeFiles/Churro_Adventures.dir/character.cpp.o" "gcc" "CMakeFiles/Churro_Adventures.dir/character.cpp.o.d"
   "/home/joao/source/01_GameCpp/01_hello_SDL/globals.cpp" "CMakeFiles/Churro_Adventures.dir/globals.cpp.o" "gcc" "CMakeFiles/Churro_Adventures.dir/globals.cpp.o.d"
   "/home/joao/source/01_GameCpp/01_hello_SDL/helper.cpp" "CMakeFiles/Churro_Adventures.dir/helper.cpp.o" "gcc" "CMakeFiles/Churro_Adventures.dir/helper.cpp.o.d"
   "/home/joao/source/01_GameCpp/01_hello_SDL/main.cpp" "CMakeFiles/Churro_Adventures.dir/main.cpp.o" "gcc" "CMakeFiles/Churro_Adventures.dir/main.cpp.o.d"
-  "/home/joao/source/01_GameCpp/01_hello_SDL/monster.cpp" "CMakeFiles/Churro_Adventures.dir/monster.cpp.o" "gcc" "CMakeFiles/Churro_Adventures.dir/monster.cpp.o.d"
   "/home/joao/source/01_GameCpp/01_hello_SDL/texture.cpp" "CMakeFiles/Churro_Adventures.dir/texture.cpp.o" "gcc" "CMakeFiles/Churro_Adventures.dir/texture.cpp.o.d"
   "/home/joao/source/01_GameCpp/01_hello_SDL/tile.cpp" "CMakeFiles/Churro_Adventures.dir/tile.cpp.o" "gcc" "CMakeFiles/Churro_Adventures.dir/tile.cpp.o.d"
   )

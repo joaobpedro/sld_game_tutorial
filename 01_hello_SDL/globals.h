@@ -3,6 +3,8 @@
 
 #include<SDL3_mixer/SDL_mixer.h>
 
+extern const int STD_VEL;
+
 //Screen dimension constants
 extern const int SCREEN_WIDTH;
 extern const int SCREEN_HEIGHT;

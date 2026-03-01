@@ -19,6 +19,7 @@ character::character() {
 }
 
 void character::handleEvent(SDL_Event &e) {
+    // handle the events better, right now when i press two keys the game does not know what to render
     // If a key was pressed
     if (e.type == SDL_EVENT_KEY_DOWN && e.key.repeat == 0) {
         // Adjust the velocity

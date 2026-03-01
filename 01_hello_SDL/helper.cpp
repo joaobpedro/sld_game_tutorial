@@ -10,19 +10,14 @@
 #include "helper.h"
 #include "texture.h"
 #include "tile.h"
+#include "entity.h"
 
 SDL_Window *gWindow = NULL;
-
-// The window renderer
 SDL_Renderer *gRenderer = NULL;
 
 // Scene textures
-LTexture gCharacterTexture[KEY_PRESS_SURFACE_TOTAL];
-LTexture gMonsterTexture;
 LTexture gTileTexture;
-
 const int TOTAL_TILE_SPRITES = 12;
-
 SDL_FRect gTileClips[TOTAL_TILE_SPRITES];
 
 bool init() {
@@ -51,47 +46,47 @@ bool init() {
     return success;
 }
 
-bool loadMedia(Tile *tiles[]) {
+bool loadMedia(Tile *tiles[], Things_Manager* things) {
     // Loading success flag
     bool success = true;
 
-    // Load dot texture
-    if (!gCharacterTexture[KEY_PRESS_SURFACE_DEFAULT].loadFromFile("../Assets/churro_standing.png")) {
-        printf("Failed to load dot texture!\n");
-        success = false;
-    }
-
-    if (!gCharacterTexture[KEY_PRESS_SURFACE_UP].loadFromFile("../Assets/churro_running_up.png")) {
-        printf("Failed to load dot texture!\n");
-        success = false;
-    }
-
-    if (!gCharacterTexture[KEY_PRESS_SURFACE_DOWN].loadFromFile("../Assets/churro_running_down.png")) {
-        printf("Failed to load dot texture!\n");
-        success = false;
-    }
-
-    if (!gCharacterTexture[KEY_PRESS_SURFACE_LEFT].loadFromFile("../Assets/churro_running_left.png")) {
-        printf("Failed to load dot texture!\n");
-        success = false;
-    }
-
-    if (!gCharacterTexture[KEY_PRESS_SURFACE_RIGHT].loadFromFile("../Assets/churro_running_right.png")) {
-        printf("Failed to load dot texture!\n");
-        success = false;
-    }
-
+    // // Load dot texture
+    // if (!gCharacterTexture[KEY_PRESS_SURFACE_DEFAULT].loadFromFile("../Assets/churro_standing.png")) {
+    //     printf("Failed to load dot texture!\n");
+    //     success = false;
+    // }
+    //
+    // if (!gCharacterTexture[KEY_PRESS_SURFACE_UP].loadFromFile("../Assets/churro_running_up.png")) {
+    //     printf("Failed to load dot texture!\n");
+    //     success = false;
+    // }
+    //
+    // if (!gCharacterTexture[KEY_PRESS_SURFACE_DOWN].loadFromFile("../Assets/churro_running_down.png")) {
+    //     printf("Failed to load dot texture!\n");
+    //     success = false;
+    // }
+    //
+    // if (!gCharacterTexture[KEY_PRESS_SURFACE_LEFT].loadFromFile("../Assets/churro_running_left.png")) {
+    //     printf("Failed to load dot texture!\n");
+    //     success = false;
+    // }
+    //
+    // if (!gCharacterTexture[KEY_PRESS_SURFACE_RIGHT].loadFromFile("../Assets/churro_running_right.png")) {
+    //     printf("Failed to load dot texture!\n");
+    //     success = false;
+    // }
+    //
     // if( !gCharacterTexture[KEY_PRESS_SURFACE_DEFAULT].loadFromFile( "../Assets/churro_standing.png" ) )
     // {
     //     printf( "Failed to load dot texture!\n" );
     //     success = false;
     // }
 
-    // load the monster texture
-    if (!gMonsterTexture.loadFromFile("../Assets/monster.png")) {
-        printf("Failed to load monster texture!\n");
-        success = false;
-    }
+    // // load the monster texture
+    // if (!gMonsterTexture.loadFromFile("../Assets/monster.png")) {
+    //     printf("Failed to load monster texture!\n");
+    //     success = false;
+    // }
 
     // Load tile texture
     if (!gTileTexture.loadFromFile("../Assets/forest_tiles_small.png")) {
@@ -105,10 +100,19 @@ bool loadMedia(Tile *tiles[]) {
         success = false;
     }
 
+    for (int I = 0; I < MAX_NUMBER_THINGS; I++) {
+        if(things->Used[I] == 1) {
+            if(!things->Things[I].texture.loadFromFile(things->Things[I].path)) {
+                printf("Failed to load tile set texture!\n");
+                success = false;
+            }
+        }
+    }
+
     return success;
 }
 
-void close(Tile *tiles[]) {
+void close(Tile *tiles[], Things_Manager* things) {
     // Deallocate tiles
     for (int i = 0; i < TOTAL_TILES; ++i) {
         if (tiles[i] != NULL) {
@@ -118,9 +122,8 @@ void close(Tile *tiles[]) {
     }
 
     // Free loaded images
-    //  gCharacterTexture[].free();
-    for (auto &texture : gCharacterTexture) {
-        texture.free();
+    for (auto thing : things->Things) {
+        thing.texture.free();
     }
     gTileTexture.free();
 
@@ -315,4 +318,101 @@ bool touchesWall(SDL_Rect box, Tile *tiles[]) {
 
     // If no wall tiles were touched
     return false;
+}
+
+void render(Things_Manager* things, SDL_Rect &camera, SDL_FRect *clip) {
+    // Show the dot
+    // here I can define the redering
+    for (int I = 0; I < MAX_NUMBER_THINGS; I++) {
+        if(things->Used[I] == 1) {
+            things->Things[I].texture.render(things->Things[I].Box.x - camera.x, things->Things[I].Box.y - camera.y, clip);
+        }
+    }
+}
+
+void handleEvent(SDL_Event &e, Things_Manager *things) {
+    for (int I = 0; I < MAX_NUMBER_THINGS; I++){
+        if (things->Used[I] == 1 && things->Things[I].kind == Kind::Player){
+            // If a key was pressed
+            if (e.type == SDL_EVENT_KEY_DOWN && e.key.repeat == 0) {
+                // Adjust the velocity
+                switch (e.key.key) {
+                    case SDLK_UP:
+                        things->Things[I].VelY -= 5*STD_VEL;
+                        break;
+                    case SDLK_DOWN:
+                        things->Things[I].VelY += 5*STD_VEL;
+                        break;
+                    case SDLK_LEFT:
+                        things->Things[I].VelX -= 5*STD_VEL;
+                        break;
+                    case SDLK_RIGHT:
+                        things->Things[I].VelX += 5*STD_VEL;
+                        break;
+                }
+            }
+            // If a key was released
+            else if (e.type == SDL_EVENT_KEY_UP && e.key.repeat == 0) {
+                // Adjust the velocity
+                switch (e.key.key) {
+                    case SDLK_UP:
+                        things->Things[I].VelY += 5*STD_VEL;
+                        break;
+                    case SDLK_DOWN:
+                        things->Things[I].VelY -= 5*STD_VEL;
+                        break;
+                    case SDLK_LEFT:
+                        things->Things[I].VelX += 5*STD_VEL;
+                        break;
+                    case SDLK_RIGHT:
+                        things->Things[I].VelX -= 5*STD_VEL;
+                        break;
+                }
+            }
+        }
+    }
+}
+void move(Tile *tiles[], Things_Manager *things) {
+    for (int I = 0; I < MAX_NUMBER_THINGS; I++) {
+        if (things->Used[I]==1){
+            // Move the dot left or right
+            things->Things[I].Box.x += things->Things[I].VelX;
+            // printf("i am here: %d\n", things->Things[I].Box.x);
+
+            // If the dot went too far to the left or right or touched a wall
+            if ((things->Things[I].Box.x < 0) || (things->Things[I].Box.x + things->Things[I].width > LEVEL_WIDTH) || touchesWall(things->Things[I].Box, tiles)) {
+                // move back
+                things->Things[I].Box.x -= things->Things[I].VelX;
+            }
+
+            // Move the dot up or down
+            things->Things[I].Box.y += things->Things[I].VelY;
+
+            // If the dot went too far up or down or touched a wall
+            if ((things->Things[I].Box.y < 0) || (things->Things[I].Box.y + things->Things[I].height > LEVEL_HEIGHT) || touchesWall(things->Things[I].Box, tiles)) {
+                // move back
+                things->Things[I].Box.y -= things->Things[I].VelY;
+            }
+        }
+    }
+}
+
+void setCamera(SDL_Rect &camera, Things_Manager *things) {
+    // Center the camera over the dot
+    camera.x = (things->Things[0].Box.x + things->Things[0].width / 2) - SCREEN_WIDTH / 2;
+    camera.y = (things->Things[0].Box.y + things->Things[0].height / 2) - SCREEN_HEIGHT / 2;
+
+    // Keep the camera in bounds
+    if (camera.x < 0) {
+        camera.x = 0;
+    }
+    if (camera.y < 0) {
+        camera.y = 0;
+    }
+    if (camera.x > LEVEL_WIDTH - camera.w) {
+        camera.x = LEVEL_WIDTH - camera.w;
+    }
+    if (camera.y > LEVEL_HEIGHT - camera.h) {
+        camera.y = LEVEL_HEIGHT - camera.h;
+    }
 }

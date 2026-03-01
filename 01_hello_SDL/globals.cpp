@@ -1,5 +1,6 @@
 #include "globals.h"
 
+extern const int STD_VEL = 1;
 
 extern const int SCREEN_WIDTH = 640;
 extern const int SCREEN_HEIGHT = 480;

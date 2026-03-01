@@ -20,7 +20,7 @@ enum class Kind {
     Nil,
     Player,
     Monster,
-    Tile,
+    // Tile,
 };
 
 struct Thing {
@@ -28,17 +28,17 @@ struct Thing {
     Kind kind;
 
     // collision data
-    SDL_Rect mBox;
+    SDL_Rect Box;
 
     // game data
     int width;
     int height;
-    int velX;
-    int velY;
+    int VelX;
+    int VelY;
     float health;
 
     // asset data
-    char* path;
+    const char* path;
 
     // animation data
     float kSpriteWidth; 
@@ -60,7 +60,7 @@ struct Thing {
 
 struct Things_Manager {
 
-    int Things[MAX_NUMBER_THINGS];
+    Thing Things[MAX_NUMBER_THINGS];
     int Used[MAX_NUMBER_THINGS];
     int NextFree;
     int LastFree;

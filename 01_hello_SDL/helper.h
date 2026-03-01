@@ -7,15 +7,16 @@
 #include "globals.h"
 #include "texture.h"
 #include "tile.h"
+#include "entity.h"
 
 //Starts up SDL and creates window
 bool init();
 
 //Loads media
-bool loadMedia( Tile* tiles[] );
+bool loadMedia( Tile* tiles[] ,Things_Manager *things);
 
 //Frees media and shuts down SDL
-void close( Tile* tiles[] );
+void close( Tile* tiles[] ,Things_Manager *things);
 
 //Box collision detector
 bool checkCollision( SDL_Rect a, SDL_Rect b );
@@ -26,6 +27,18 @@ bool touchesWall( SDL_Rect box, Tile* tiles[] );
 //Sets tiles from tile map
 bool setTiles( Tile *tiles[] );
 
+// render all objects
+void render(Things_Manager* things, SDL_Rect &camera, SDL_FRect *clip);
+
+// handle events for the Player
+void handleEvent(SDL_Event &e,Things_Manager *things);
+
+// move the things
+void move(Tile *tiles[], Things_Manager *things);
+
+// the camera follows the player
+void setCamera(SDL_Rect &camera, Things_Manager *things);
+
 //The window we'll be rendering to
 extern SDL_Window* gWindow;
 
@@ -33,8 +46,5 @@ extern SDL_Window* gWindow;
 extern SDL_Renderer* gRenderer;
 
 //Scene textures
-extern LTexture gCharacterTexture[];
-extern LTexture gMonsterTexture;
 extern LTexture gTileTexture;
-
 extern SDL_FRect gTileClips[];

@@ -209,4 +209,5 @@ CMakeFiles/Churro_Adventures.dir/texture.cpp.o: \
  /usr/include/c++/13/bits/fstream.tcc \
  /home/joao/source/01_GameCpp/01_hello_SDL/globals.h \
  /usr/local/include/SDL3_mixer/SDL_mixer.h \
- /home/joao/source/01_GameCpp/01_hello_SDL/tile.h
+ /home/joao/source/01_GameCpp/01_hello_SDL/tile.h \
+ /home/joao/source/01_GameCpp/01_hello_SDL/entity.h
