@@ -399,7 +399,6 @@ void move(Tile *tiles[], Things_Manager *things) {
 
 void setCamera(SDL_Rect &camera, Things_Manager *things) {
     // Center the camera over the dot
-    // HARDCODED
     camera.x = (things->Things[0]->Box.x + things->Things[0]->width / 2) - SCREEN_WIDTH / 2;
     camera.y = (things->Things[0]->Box.y + things->Things[0]->height / 2) - SCREEN_HEIGHT / 2;
 

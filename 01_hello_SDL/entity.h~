@@ -60,7 +60,7 @@ struct Thing {
 
 struct Things_Manager {
 
-    Thing *Things[MAX_NUMBER_THINGS];
+    Thing Things[MAX_NUMBER_THINGS];
     int Used[MAX_NUMBER_THINGS];
     int NextFree;
     int LastFree;
