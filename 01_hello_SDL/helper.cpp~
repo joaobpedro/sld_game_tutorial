@@ -339,15 +339,19 @@ void handleEvent(SDL_Event &e, Things_Manager *things) {
                 switch (e.key.key) {
                     case SDLK_UP:
                         things->Things[I]->VelY -= 5*STD_VEL;
+                        printf("Velocity up %d\n", things->Things[I]->VelY);
                         break;
                     case SDLK_DOWN:
                         things->Things[I]->VelY += 5*STD_VEL;
+                        printf("Velocity up %d\n", things->Things[I]->VelY);
                         break;
                     case SDLK_LEFT:
                         things->Things[I]->VelX -= 5*STD_VEL;
+                        printf("Velocity up %d\n", things->Things[I]->VelX);
                         break;
                     case SDLK_RIGHT:
                         things->Things[I]->VelX += 5*STD_VEL;
+                        printf("Velocity up %d\n", things->Things[I]->VelX);
                         break;
                 }
             }
@@ -377,7 +381,7 @@ void move(Tile *tiles[], Things_Manager *things) {
         if (things->Used[I]==1){
             // Move the dot left or right
             things->Things[I]->Box.x += things->Things[I]->VelX;
-            // printf("i am here: %d\n", things->Things[I].Box.x);
+            // printf("i am here: %d\n", things->Things[I]->Box.x);
 
             // If the dot went too far to the left or right or touched a wall
             if ((things->Things[I]->Box.x < 0) || (things->Things[I]->Box.x + things->Things[I]->width > LEVEL_WIDTH) || touchesWall(things->Things[I]->Box, tiles)) {
@@ -399,6 +403,7 @@ void move(Tile *tiles[], Things_Manager *things) {
 
 void setCamera(SDL_Rect &camera, Things_Manager *things) {
     // Center the camera over the dot
+    // HARDCODED
     camera.x = (things->Things[0]->Box.x + things->Things[0]->width / 2) - SCREEN_WIDTH / 2;
     camera.y = (things->Things[0]->Box.y + things->Things[0]->height / 2) - SCREEN_HEIGHT / 2;
 

@@ -47,8 +47,6 @@ int main() {
         bool quit = false;
         SDL_Event e;
 
-
-
         while (!quit) {
             // Handle events on queue
             while (SDL_PollEvent(&e) != 0) {
@@ -57,11 +55,10 @@ int main() {
                     quit = true;
                 }
                 handleEvent(e, &things);
-                // printf("churro vel %d:", Churro.VelX);
             }
+            printf("Hello\n");
             move(tileSet, &things);
             setCamera(camera, &things);
-            // printf("churro box %d:", Churro.Box.x);
             SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
             SDL_RenderClear(gRenderer);
             for (int i = 0; i < TOTAL_TILES; ++i) {

@@ -56,6 +56,7 @@ int main() {
                 }
                 handleEvent(e, &things);
             }
+            // printf("Hello\n");
             move(tileSet, &things);
             setCamera(camera, &things);
             SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
