@@ -35,7 +35,7 @@ int main() {
         Churro.width = 32;
         Churro.height = 32;
         Churro.path = "../Assets/churro_standing.png";
-        things.Things[0] = &Churro;
+        things.Things[0] = Churro;
         things.Used[0] = 1;
 
         // Load media

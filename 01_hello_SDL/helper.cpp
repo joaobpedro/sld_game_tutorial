@@ -1,4 +1,3 @@
-
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <SDL3_image/SDL_image.h>
@@ -102,7 +101,7 @@ bool loadMedia(Tile *tiles[], Things_Manager* things) {
 
     for (int I = 0; I < MAX_NUMBER_THINGS; I++) {
         if(things->Used[I] == 1) {
-            if(!things->Things[I]->texture.loadFromFile(things->Things[I]->path)) {
+            if(!things->Things[I].texture.loadFromFile(things->Things[I].path)) {
                 printf("Failed to load tile set texture!\n");
                 success = false;
             }
@@ -123,7 +122,7 @@ void close(Tile *tiles[], Things_Manager* things) {
 
     // Free loaded images
     for (auto thing : things->Things) {
-        thing->texture.free();
+        thing.texture.free();
     }
     gTileTexture.free();
 
@@ -325,33 +324,33 @@ void render(Things_Manager* things, SDL_Rect &camera, SDL_FRect *clip) {
     // here I can define the redering
     for (int I = 0; I < MAX_NUMBER_THINGS; I++) {
         if(things->Used[I] == 1) {
-            things->Things[I]->texture.render(things->Things[I]->Box.x - camera.x, things->Things[I]->Box.y - camera.y, clip);
+            things->Things[I].texture.render(things->Things[I].Box.x - camera.x, things->Things[I].Box.y - camera.y, clip);
         }
     }
 }
 
 void handleEvent(SDL_Event &e, Things_Manager *things) {
     for (int I = 0; I < MAX_NUMBER_THINGS; I++){
-        if (things->Used[I] == 1 && things->Things[I]->kind == Kind::Player){
+        if (things->Used[I] == 1 && things->Things[I].kind == Kind::Player){
             // If a key was pressed
             if (e.type == SDL_EVENT_KEY_DOWN && e.key.repeat == 0) {
                 // Adjust the velocity
                 switch (e.key.key) {
                     case SDLK_UP:
-                        things->Things[I]->VelY -= 5*STD_VEL;
-                        printf("Velocity up %d\n", things->Things[I]->VelY);
+                        things->Things[I].VelY -= 5*STD_VEL;
+                        printf("Velocity up %d\n", things->Things[I].VelY);
                         break;
                     case SDLK_DOWN:
-                        things->Things[I]->VelY += 5*STD_VEL;
-                        printf("Velocity up %d\n", things->Things[I]->VelY);
+                        things->Things[I].VelY += 5*STD_VEL;
+                        printf("Velocity up %d\n", things->Things[I].VelY);
                         break;
                     case SDLK_LEFT:
-                        things->Things[I]->VelX -= 5*STD_VEL;
-                        printf("Velocity up %d\n", things->Things[I]->VelX);
+                        things->Things[I].VelX -= 5*STD_VEL;
+                        printf("Velocity up %d\n", things->Things[I].VelX);
                         break;
                     case SDLK_RIGHT:
-                        things->Things[I]->VelX += 5*STD_VEL;
-                        printf("Velocity up %d\n", things->Things[I]->VelX);
+                        things->Things[I].VelX += 5*STD_VEL;
+                        printf("Velocity up %d\n", things->Things[I].VelX);
                         break;
                 }
             }
@@ -360,16 +359,16 @@ void handleEvent(SDL_Event &e, Things_Manager *things) {
                 // Adjust the velocity
                 switch (e.key.key) {
                     case SDLK_UP:
-                        things->Things[I]->VelY += 5*STD_VEL;
+                        things->Things[I].VelY += 5*STD_VEL;
                         break;
                     case SDLK_DOWN:
-                        things->Things[I]->VelY -= 5*STD_VEL;
+                        things->Things[I].VelY -= 5*STD_VEL;
                         break;
                     case SDLK_LEFT:
-                        things->Things[I]->VelX += 5*STD_VEL;
+                        things->Things[I].VelX += 5*STD_VEL;
                         break;
                     case SDLK_RIGHT:
-                        things->Things[I]->VelX -= 5*STD_VEL;
+                        things->Things[I].VelX -= 5*STD_VEL;
                         break;
                 }
             }
@@ -380,22 +379,22 @@ void move(Tile *tiles[], Things_Manager *things) {
     for (int I = 0; I < MAX_NUMBER_THINGS; I++) {
         if (things->Used[I]==1){
             // Move the dot left or right
-            things->Things[I]->Box.x += things->Things[I]->VelX;
+            things->Things[I].Box.x += things->Things[I].VelX;
             // printf("i am here: %d\n", things->Things[I]->Box.x);
 
             // If the dot went too far to the left or right or touched a wall
-            if ((things->Things[I]->Box.x < 0) || (things->Things[I]->Box.x + things->Things[I]->width > LEVEL_WIDTH) || touchesWall(things->Things[I]->Box, tiles)) {
+            if ((things->Things[I].Box.x < 0) || (things->Things[I].Box.x + things->Things[I].width > LEVEL_WIDTH) || touchesWall(things->Things[I].Box, tiles)) {
                 // move back
-                things->Things[I]->Box.x -= things->Things[I]->VelX;
+                things->Things[I].Box.x -= things->Things[I].VelX;
             }
 
             // Move the dot up or down
-            things->Things[I]->Box.y += things->Things[I]->VelY;
+            things->Things[I].Box.y += things->Things[I].VelY;
 
             // If the dot went too far up or down or touched a wall
-            if ((things->Things[I]->Box.y < 0) || (things->Things[I]->Box.y + things->Things[I]->height > LEVEL_HEIGHT) || touchesWall(things->Things[I]->Box, tiles)) {
+            if ((things->Things[I].Box.y < 0) || (things->Things[I].Box.y + things->Things[I].height > LEVEL_HEIGHT) || touchesWall(things->Things[I].Box, tiles)) {
                 // move back
-                things->Things[I]->Box.y -= things->Things[I]->VelY;
+                things->Things[I].Box.y -= things->Things[I].VelY;
             }
         }
     }
@@ -404,8 +403,8 @@ void move(Tile *tiles[], Things_Manager *things) {
 void setCamera(SDL_Rect &camera, Things_Manager *things) {
     // Center the camera over the dot
     // HARDCODED
-    camera.x = (things->Things[0]->Box.x + things->Things[0]->width / 2) - SCREEN_WIDTH / 2;
-    camera.y = (things->Things[0]->Box.y + things->Things[0]->height / 2) - SCREEN_HEIGHT / 2;
+    camera.x = (things->Things[0].Box.x + things->Things[0].width / 2) - SCREEN_WIDTH / 2;
+    camera.y = (things->Things[0].Box.y + things->Things[0].height / 2) - SCREEN_HEIGHT / 2;
 
     // Keep the camera in bounds
     if (camera.x < 0) {
