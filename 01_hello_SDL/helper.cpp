@@ -4,6 +4,7 @@
 #include <SDL3_mixer/SDL_mixer.h>
 #include <fstream>
 #include <string>
+#include <random>
 
 #include "globals.h"
 #include "helper.h"
@@ -18,6 +19,17 @@ SDL_Renderer *gRenderer = NULL;
 LTexture gTileTexture;
 const int TOTAL_TILE_SPRITES = 12;
 SDL_FRect gTileClips[TOTAL_TILE_SPRITES];
+
+// math helper
+int getRandomInt(int min, int max) {
+    // static ensures the engine is only initialized once for the whole program
+    static std::random_device rd; 
+    static std::mt19937 gen(rd()); 
+
+    std::uniform_int_distribution<> dist(min, max);
+    return dist(gen);
+}
+
 
 bool init() {
     // Initialization flag
@@ -99,7 +111,7 @@ bool loadMedia(Tile *tiles[], Things_Manager* things) {
         success = false;
     }
 
-    for (int I = 0; I < MAX_NUMBER_THINGS; I++) {
+    for (int I = 1; I < MAX_NUMBER_THINGS; I++) {
         if(things->Used[I] == 1) {
             if(!things->Things[I].texture.loadFromFile(things->Things[I].path)) {
                 printf("Failed to load tile set texture!\n");
@@ -322,7 +334,7 @@ bool touchesWall(SDL_Rect box, Tile *tiles[]) {
 void render(Things_Manager* things, SDL_Rect &camera, SDL_FRect *clip) {
     // Show the dot
     // here I can define the redering
-    for (int I = 0; I < MAX_NUMBER_THINGS; I++) {
+    for (int I = 1; I < MAX_NUMBER_THINGS; I++) {
         if(things->Used[I] == 1) {
             things->Things[I].texture.render(things->Things[I].Box.x - camera.x, things->Things[I].Box.y - camera.y, clip);
         }
@@ -330,7 +342,7 @@ void render(Things_Manager* things, SDL_Rect &camera, SDL_FRect *clip) {
 }
 
 void handleEvent(SDL_Event &e, Things_Manager *things) {
-    for (int I = 0; I < MAX_NUMBER_THINGS; I++){
+    for (int I = 1; I < MAX_NUMBER_THINGS; I++){
         if (things->Used[I] == 1 && things->Things[I].kind == Kind::Player){
             // If a key was pressed
             if (e.type == SDL_EVENT_KEY_DOWN && e.key.repeat == 0) {
@@ -338,19 +350,15 @@ void handleEvent(SDL_Event &e, Things_Manager *things) {
                 switch (e.key.key) {
                     case SDLK_UP:
                         things->Things[I].VelY -= 5*STD_VEL;
-                        printf("Velocity up %d\n", things->Things[I].VelY);
                         break;
                     case SDLK_DOWN:
                         things->Things[I].VelY += 5*STD_VEL;
-                        printf("Velocity up %d\n", things->Things[I].VelY);
                         break;
                     case SDLK_LEFT:
                         things->Things[I].VelX -= 5*STD_VEL;
-                        printf("Velocity up %d\n", things->Things[I].VelX);
                         break;
                     case SDLK_RIGHT:
                         things->Things[I].VelX += 5*STD_VEL;
-                        printf("Velocity up %d\n", things->Things[I].VelX);
                         break;
                 }
             }
@@ -376,11 +384,10 @@ void handleEvent(SDL_Event &e, Things_Manager *things) {
     }
 }
 void move(Tile *tiles[], Things_Manager *things) {
-    for (int I = 0; I < MAX_NUMBER_THINGS; I++) {
-        if (things->Used[I]==1){
+    for (int I = 1; I < MAX_NUMBER_THINGS; I++) {
+        if (things->Used[I]==1 && things->Things[I].kind == Kind::Player){
             // Move the dot left or right
             things->Things[I].Box.x += things->Things[I].VelX;
-            // printf("i am here: %d\n", things->Things[I]->Box.x);
 
             // If the dot went too far to the left or right or touched a wall
             if ((things->Things[I].Box.x < 0) || (things->Things[I].Box.x + things->Things[I].width > LEVEL_WIDTH) || touchesWall(things->Things[I].Box, tiles)) {
@@ -396,6 +403,23 @@ void move(Tile *tiles[], Things_Manager *things) {
                 // move back
                 things->Things[I].Box.y -= things->Things[I].VelY;
             }
+        } else if (things->Used[I]==1 && things->Things[I].kind == Kind::Monster){
+            things->Things[I].Box.x += things->Things[I].VelX;
+
+            // If the dot went too far to the left or right or touched a wall
+            if ((things->Things[I].Box.x < 0) || (things->Things[I].Box.x + things->Things[I].width > LEVEL_WIDTH) || touchesWall(things->Things[I].Box, tiles)) {
+            // move back
+                things->Things[I].VelX = -1*things->Things[I].VelX;
+            }
+
+            // Move the dot up or down
+            things->Things[I].Box.y += things->Things[I].VelY;
+
+            // If the dot went too far up or down or touched a wall
+            if ((things->Things[I].Box.y < 0) || (things->Things[I].Box.y + things->Things[I].height > LEVEL_HEIGHT) || touchesWall(things->Things[I].Box, tiles)) {
+                // move back
+                things->Things[I].VelY = things->Things[I].VelY;
+            }
         }
     }
 }
@@ -403,8 +427,8 @@ void move(Tile *tiles[], Things_Manager *things) {
 void setCamera(SDL_Rect &camera, Things_Manager *things) {
     // Center the camera over the dot
     // HARDCODED
-    camera.x = (things->Things[0].Box.x + things->Things[0].width / 2) - SCREEN_WIDTH / 2;
-    camera.y = (things->Things[0].Box.y + things->Things[0].height / 2) - SCREEN_HEIGHT / 2;
+    camera.x = (things->Things[1].Box.x + things->Things[1].width / 2) - SCREEN_WIDTH / 2;
+    camera.y = (things->Things[1].Box.y + things->Things[1].height / 2) - SCREEN_HEIGHT / 2;
 
     // Keep the camera in bounds
     if (camera.x < 0) {
@@ -420,3 +444,19 @@ void setCamera(SDL_Rect &camera, Things_Manager *things) {
         camera.y = LEVEL_HEIGHT - camera.h;
     }
 }
+
+void kill_monster(Things_Manager *things) {
+    for (int I = 2; I < MAX_NUMBER_THINGS; I++) {
+        if (things->Used[I] == 1){
+            if (checkCollision(things->Things[1].Box, things->Things[I].Box)) {
+                things->Things[I].health -= 5;
+                if (things->Things[I].health <= 0){
+                    things->Used[I] == 0;
+                    things->Things[I] = Thing();
+                }
+            }
+        }
+    }
+
+}
+
