@@ -244,4 +244,5 @@ CMakeFiles/Churro_Adventures.dir/main.cpp.o: \
  /usr/include/c++/13/pstl/execution_defs.h \
  /home/joao/source/01_GameCpp/01_hello_SDL/texture.h \
  /home/joao/source/01_GameCpp/01_hello_SDL/tile.h \
- /home/joao/source/01_GameCpp/01_hello_SDL/entity.h
+ /home/joao/source/01_GameCpp/01_hello_SDL/entity.h \
+ /home/joao/source/01_GameCpp/01_hello_SDL/vector.h

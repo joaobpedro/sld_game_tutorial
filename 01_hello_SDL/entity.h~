@@ -1,4 +1,4 @@
-#ifndef , 0ENTITY_H_
+#ifndef ENTITY_H_
 #define ENTITY_H_
 
 #include <SDL3/SDL.h>
@@ -32,6 +32,7 @@ struct Thing {
     SDL_Rect Box;
 
     // game data
+    // dont need width and height these are part of the box
     int width;
     int height;
     int VelX;
@@ -42,11 +43,14 @@ struct Thing {
     const char* path;
 
     // animation data
-    float kSpriteWidth; 
-    float kSpriteHeight; 
-    float padding; 
-    int kWakingAnimationFrames; 
-    int kWakingAnimationFramesPerSprite; 
+    // NOTE I made these globals, which means that all things
+    // will need the same sprite structure
+    // if I want thing specific sprite this is the way
+    // float kSpriteWidth; 
+    // float kSpriteHeight; 
+    // float padding; 
+    // int kWakingAnimationFrames; 
+    // int kWakingAnimationFramesPerSprite; 
 
     // rendering
     SDL_FRect CurrentClip;

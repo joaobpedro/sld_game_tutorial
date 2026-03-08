@@ -1,0 +1,29 @@
+#ifndef VECTOR_H_
+#define VECTOR_H_
+
+struct Vec2 {
+    double x, y; // vector coordinates in pixels
+
+    // dot product
+    double dot (const Vec2& other) {
+        return(x * other.x) + (y * other.y);
+    };
+
+    // dot product
+    Vec2 mult (double scalar) {
+        return{x*scaler, y*scaler};
+    };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+#endif

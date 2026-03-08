@@ -331,7 +331,7 @@ bool touchesWall(SDL_Rect box, Tile *tiles[]) {
     return false;
 }
 
-void render(Things_Manager* things, SDL_Rect &camera, SDL_FRect *clip) {
+void render(Things_Manager* things, SDL_Rect &camera) {
     // Show the dot
     // here I can define the redering
     for (int I = 1; I < MAX_NUMBER_THINGS; I++) {

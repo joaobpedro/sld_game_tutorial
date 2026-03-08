@@ -123,6 +123,7 @@ bool loadMedia(Tile *tiles[], Things_Manager* things) {
     return success;
 }
 
+// passing pointers so I can erase the data
 void close(Tile *tiles[], Things_Manager* things) {
     // Deallocate tiles
     for (int i = 0; i < TOTAL_TILES; ++i) {

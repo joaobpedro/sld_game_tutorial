@@ -32,6 +32,7 @@ struct Thing {
     SDL_Rect Box;
 
     // game data
+    // dont need width and height these are part of the box
     int width;
     int height;
     int VelX;
@@ -42,22 +43,25 @@ struct Thing {
     const char* path;
 
     // animation data
-    float kSpriteWidth; 
-    float kSpriteHeight; 
-    float padding; 
-    int kWakingAnimationFrames; 
-    int kWakingAnimationFramesPerSprite; 
+    // NOTE I made these globals, which means that all things
+    // will need the same sprite structure
+    // if I want thing specific sprite this is the way
+    // float kSpriteWidth; 
+    // float kSpriteHeight; 
+    // float padding; 
+    // int kWakingAnimationFrames; 
+    // int kWakingAnimationFramesPerSprite; 
 
     // rendering
     SDL_FRect CurrentClip;
     LTexture texture;
 
     // just to manage my fixed array of things
+    // FIXME i am not using these at all right now
     thing_ref Parent;
     thing_ref FirstChild;
     thing_ref NextSibling;
     thing_ref PrevSibling;
-
 };
 
 struct Things_Manager {
