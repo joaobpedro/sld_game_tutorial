@@ -61,7 +61,7 @@ int main() {
         bool quit = false;
         SDL_Event e;
 
-        int frame=1;
+        int frame{-1};
 
         while (!quit) {
             // Handle events on queue
@@ -86,8 +86,7 @@ int main() {
                     animate(frame, things.Things[I].CurrentClip);
                 }
             }
-            // NOTE right now the current clip is not picked
-            render(&things, camera, 0);
+            render(&things, camera);
             SDL_RenderPresent(gRenderer);
             frame++;
         }

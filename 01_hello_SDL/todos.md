@@ -58,12 +58,13 @@
     * [x] render
     * [x] move
     * [x] set_camera
-    * [ ] animate
-        * [ ] all things must have the same sprite structure
+    * [x] animate
+        * [x] all things must have the same sprite structure
         * [ ] we can make the sprite pick based on speed, this will work
             even if the things does not have event handles
         
-    * [ ] kill monster
+    * [x] kill monster
+        * [ ] now need a proper animation for the kill monster
     ...
 * [ ] FIXME: there is a bug in the event handling and the access to the player data is not as I imagined
 need to check the pointer/ref/adresses stuff.

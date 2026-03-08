@@ -81,13 +81,12 @@ int main() {
                 tileSet[i]->render(camera);
             }
             kill_monster(&things);
-            for (int I = 2; I<MAX_NUMBER_THINGS; I++){
+            for (int I = 1; I<MAX_NUMBER_THINGS; I++){
                 if(things.Used[I] == 1){
                     animate(frame, things.Things[I].CurrentClip);
                 }
             }
-            // NOTE right now the current clip is not picked
-            render(&things, camera, 0);
+            render(&things, camera);
             SDL_RenderPresent(gRenderer);
             frame++;
         }

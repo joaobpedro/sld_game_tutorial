@@ -461,7 +461,7 @@ void kill_monster(Things_Manager *things) {
 }
 
 // animate any thing
-void animate(int frame, SDL_FRect &currentClip) {
+void animate(int &frame, SDL_FRect &currentClip) {
     // this is just the selection of the sprite clip to show given a frame
     if (frame / WalkingAnimationsFramesperSprite >= WalkingAnimationFrames) {
         frame = 0;

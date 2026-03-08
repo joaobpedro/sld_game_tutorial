@@ -32,7 +32,7 @@ bool touchesWall( SDL_Rect box, Tile* tiles[] );
 bool setTiles( Tile *tiles[] );
 
 // render all objects
-void render(Things_Manager* things, SDL_Rect &camera, SDL_FRect *clip);
+void render(Things_Manager* things, SDL_Rect &camera);
 
 // handle events for the Player
 void handleEvent(SDL_Event &e,Things_Manager *things);
