@@ -29,11 +29,3 @@ extern const int TILE_BOTTOMLEFT = 9;
 extern const int TILE_LEFT = 10;
 extern const int TILE_TOPLEFT = 11;
 
-
-// Animation constants
-extern const float SpriteWidth = 32;
-extern const float SpriteHeight = 32;
-extern const float padding = 0;
-extern const int WalkingAnimationFrames = 6;
-extern const int WalkingAnimationsFramesperSprite = 6;
-

@@ -336,7 +336,7 @@ void render(Things_Manager* things, SDL_Rect &camera, SDL_FRect *clip) {
     // here I can define the redering
     for (int I = 1; I < MAX_NUMBER_THINGS; I++) {
         if(things->Used[I] == 1) {
-            things->Things[I].texture.render(things->Things[I].Box.x - camera.x, things->Things[I].Box.y - camera.y, clip);
+            things->Things[I].texture.render(things->Things[I].Box.x - camera.x, things->Things[I].Box.y - camera.y, &things->Things[I].CurrentClip);
         }
     }
 }
@@ -460,3 +460,25 @@ void kill_monster(Things_Manager *things) {
 
 }
 
+// animate any thing
+void animate(int &frame, SDL_FRect &currentClip) {
+    // this is just the selection of the sprite clip to show given a frame
+    if (frame / WalkingAnimationsFramesperSprite >= WalkingAnimationFrames) {
+        frame = 0;
+    }
+
+    // this should be WakingAnimationFrames but clangd is complaining that this is variable
+    // so I am hardcoding this to 6
+    // HARDCODED this frames per animation needs to come from somewhere,
+    // but right now is hard coded, its my cabin anyway
+    SDL_FRect spriteClips[6] = {
+        {SpriteWidth * 0, 0.f, SpriteWidth, SpriteHeight},
+        {SpriteWidth * 1 + padding, 0.f, SpriteWidth, SpriteHeight},
+        {SpriteWidth * 2 + 2 * padding, 0.f, SpriteWidth, SpriteHeight},
+        {SpriteWidth * 3 + 3 * padding, 0.f, SpriteWidth, SpriteHeight},
+        {SpriteWidth * 4 + 4 * padding, 0.f, SpriteWidth, SpriteHeight},
+        {SpriteWidth * 5 + 5 * padding, 0.f, SpriteWidth, SpriteHeight},
+    };
+    // Set sprite clips
+    currentClip = spriteClips[frame / WalkingAnimationsFramesperSprite];
+};

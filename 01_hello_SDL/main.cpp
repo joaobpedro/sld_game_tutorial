@@ -61,6 +61,8 @@ int main() {
         bool quit = false;
         SDL_Event e;
 
+        int frame{-1};
+
         while (!quit) {
             // Handle events on queue
             while (SDL_PollEvent(&e) != 0) {
@@ -79,8 +81,15 @@ int main() {
                 tileSet[i]->render(camera);
             }
             kill_monster(&things);
+            for (int I = 2; I<MAX_NUMBER_THINGS; I++){
+                if(things.Used[I] == 1){
+                    animate(frame, things.Things[I].CurrentClip);
+                }
+            }
+            // NOTE right now the current clip is not picked
             render(&things, camera, 0);
             SDL_RenderPresent(gRenderer);
+            frame++;
         }
     }
     return 0;

@@ -10,6 +10,7 @@
 // this will be an array of structs
 #define MAX_NUMBER_THINGS 1024
 
+// FIXME right now I am not using this for anything
 struct thing_ref {
     int thingIdx;
     int thingGen;
@@ -48,6 +49,7 @@ struct Thing {
     int kWakingAnimationFramesPerSprite; 
 
     // rendering
+    SDL_FRect CurrentClip;
     LTexture texture;
 
     // just to manage my fixed array of things

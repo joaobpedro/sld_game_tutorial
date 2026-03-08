@@ -40,12 +40,12 @@ int main() {
         
         for (int J = 2; J < 20; J++){
             things.Things[J].kind = Kind::Monster;
-            things.Things[J].Box = {20,20};
+            things.Things[J].Box = {getRandomInt(1,200),getRandomInt(1,200)};
             things.Things[J].width = 32;
             things.Things[J].height = 32;
             things.Things[J].Box.w = 32;
             things.Things[J].Box.h = 32;
-            things.Things[J].health = 100000;
+            things.Things[J].health = 100;
             things.Things[J].VelX = 1;
             things.Things[J].VelY = 1;
             things.Things[J].path = "../Assets/monster.png";
@@ -60,6 +60,8 @@ int main() {
         SDL_Rect camera = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
         bool quit = false;
         SDL_Event e;
+
+        int frame=1;
 
         while (!quit) {
             // Handle events on queue
@@ -79,8 +81,15 @@ int main() {
                 tileSet[i]->render(camera);
             }
             kill_monster(&things);
+            for (int I = 2; I<MAX_NUMBER_THINGS; I++){
+                if(things.Used[I] == 1){
+                    animate(frame, things.Things[I].CurrentClip);
+                }
+            }
+            // NOTE right now the current clip is not picked
             render(&things, camera, 0);
             SDL_RenderPresent(gRenderer);
+            frame++;
         }
     }
     return 0;

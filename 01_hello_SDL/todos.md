@@ -59,11 +59,15 @@
     * [x] move
     * [x] set_camera
     * [ ] animate
+        * [ ] all things must have the same sprite structure
+        * [ ] we can make the sprite pick based on speed, this will work
+            even if the things does not have event handles
+        
     * [ ] kill monster
     ...
 * [ ] FIXME: there is a bug in the event handling and the access to the player data is not as I imagined
 need to check the pointer/ref/adresses stuff.
-    * [x] seems fixed for now
+    * [x] NOTE FIXED seems fixed for now
 
 ### Entity Manager
 * [x] needs a maximum entity value, we wil start with 1024

@@ -46,6 +46,9 @@ void setCamera(SDL_Rect &camera, Things_Manager *things);
 // kill monster by touching
 void kill_monster(Things_Manager *things);
 
+// animate sprites
+void animate(int &frame, SDL_FRect &currentClip);
+
 //The window we'll be rendering to
 extern SDL_Window* gWindow;
 

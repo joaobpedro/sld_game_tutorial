@@ -47,8 +47,8 @@ enum KeyPressSurfaces
 };
 
 
-extern const float SpriteWidth;
-extern const float SpriteHeight;
+extern const float SpriteWidth ;
+extern const float SpriteHeight ;
 extern const float padding;
 extern const int WalkingAnimationFrames;
 extern const int WalkingAnimationsFramesperSprite;
