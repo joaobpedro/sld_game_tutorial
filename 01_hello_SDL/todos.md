@@ -9,10 +9,10 @@
   * [x] IMCOMPLETE make monsters come alive
   * [x] !! IMPORTANT make entity system for the game
   * [x] give health properties and lives? maybe
+  * [ ] TODO expand the level, this one is very small
   * [ ] [General Fixes](#general-fixes)
   * [ ] Vector Mechanics - I need to make vector calculation helpers
   * [ ] add musical effects to make the game feel more like a game
-  * [ ] expand the level, this one is very small
   * [ ] make Selma character
   * [ ] include Selma in the game
   * [ ] start to write a story
@@ -68,7 +68,7 @@
     * [x] kill monster
         * [ ] now need a proper animation for the kill monster
     ...
-* [ ] FIXME: there is a bug in the event handling and the access to the player data is not as I imagined
+* [ ] --FIXME--: there is a bug in the event handling and the access to the player data is not as I imagined
 need to check the pointer/ref/adresses stuff.
     * [x] NOTE FIXED seems fixed for now
 
@@ -79,7 +79,7 @@ need to check the pointer/ref/adresses stuff.
 * [x] I need to use templates to add a components and such
 * [x] entities will not be modular, they will have all the 
 data for all components
-* [ ] right now i am not managing entities at all, just populating the 
+* [ ] FIXME right now i am not managing entities at all, just populating the 
 array with some things and thats it
 
 ## General Fixes
