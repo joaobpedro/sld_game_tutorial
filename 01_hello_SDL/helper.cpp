@@ -58,46 +58,7 @@ bool init() {
 }
 
 bool loadMedia(Tile *tiles[], Things_Manager* things) {
-    // Loading success flag
     bool success = true;
-
-    // // Load dot texture
-    // if (!gCharacterTexture[KEY_PRESS_SURFACE_DEFAULT].loadFromFile("../Assets/churro_standing.png")) {
-    //     printf("Failed to load dot texture!\n");
-    //     success = false;
-    // }
-    //
-    // if (!gCharacterTexture[KEY_PRESS_SURFACE_UP].loadFromFile("../Assets/churro_running_up.png")) {
-    //     printf("Failed to load dot texture!\n");
-    //     success = false;
-    // }
-    //
-    // if (!gCharacterTexture[KEY_PRESS_SURFACE_DOWN].loadFromFile("../Assets/churro_running_down.png")) {
-    //     printf("Failed to load dot texture!\n");
-    //     success = false;
-    // }
-    //
-    // if (!gCharacterTexture[KEY_PRESS_SURFACE_LEFT].loadFromFile("../Assets/churro_running_left.png")) {
-    //     printf("Failed to load dot texture!\n");
-    //     success = false;
-    // }
-    //
-    // if (!gCharacterTexture[KEY_PRESS_SURFACE_RIGHT].loadFromFile("../Assets/churro_running_right.png")) {
-    //     printf("Failed to load dot texture!\n");
-    //     success = false;
-    // }
-    //
-    // if( !gCharacterTexture[KEY_PRESS_SURFACE_DEFAULT].loadFromFile( "../Assets/churro_standing.png" ) )
-    // {
-    //     printf( "Failed to load dot texture!\n" );
-    //     success = false;
-    // }
-
-    // // load the monster texture
-    // if (!gMonsterTexture.loadFromFile("../Assets/monster.png")) {
-    //     printf("Failed to load monster texture!\n");
-    //     success = false;
-    // }
 
     // Load tile texture
     if (!gTileTexture.loadFromFile("../Assets/forest_tiles_small.png")) {
@@ -333,8 +294,6 @@ bool touchesWall(SDL_Rect box, Tile *tiles[]) {
 }
 
 void render(Things_Manager* things, SDL_Rect &camera) {
-    // Show the dot
-    // here I can define the redering
     for (int I = 1; I < MAX_NUMBER_THINGS; I++) {
         if(things->Used[I] == 1) {
             things->Things[I].texture.render(things->Things[I].Box.x - camera.x, things->Things[I].Box.y - camera.y, &things->Things[I].CurrentClip);
@@ -391,7 +350,7 @@ void move(Tile *tiles[], Things_Manager *things) {
             things->Things[I].Box.x += things->Things[I].VelX;
 
             // If the dot went too far to the left or right or touched a wall
-            if ((things->Things[I].Box.x < 0) || (things->Things[I].Box.x + things->Things[I].width > LEVEL_WIDTH) || touchesWall(things->Things[I].Box, tiles)) {
+            if ((things->Things[I].Box.x < 0) || (things->Things[I].Box.x + things->Things[I].Box.w > LEVEL_WIDTH) || touchesWall(things->Things[I].Box, tiles)) {
                 // move back
                 things->Things[I].Box.x -= things->Things[I].VelX;
             }
@@ -400,7 +359,7 @@ void move(Tile *tiles[], Things_Manager *things) {
             things->Things[I].Box.y += things->Things[I].VelY;
 
             // If the dot went too far up or down or touched a wall
-            if ((things->Things[I].Box.y < 0) || (things->Things[I].Box.y + things->Things[I].height > LEVEL_HEIGHT) || touchesWall(things->Things[I].Box, tiles)) {
+            if ((things->Things[I].Box.y < 0) || (things->Things[I].Box.y + things->Things[I].Box.w > LEVEL_HEIGHT) || touchesWall(things->Things[I].Box, tiles)) {
                 // move back
                 things->Things[I].Box.y -= things->Things[I].VelY;
             }
@@ -408,7 +367,7 @@ void move(Tile *tiles[], Things_Manager *things) {
             things->Things[I].Box.x += things->Things[I].VelX;
 
             // If the dot went too far to the left or right or touched a wall
-            if ((things->Things[I].Box.x < 0) || (things->Things[I].Box.x + things->Things[I].width > LEVEL_WIDTH) || touchesWall(things->Things[I].Box, tiles)) {
+            if ((things->Things[I].Box.x < 0) || (things->Things[I].Box.x + things->Things[I].Box.w > LEVEL_WIDTH) || touchesWall(things->Things[I].Box, tiles)) {
             // move back
                 things->Things[I].VelX = -1*things->Things[I].VelX;
             }
@@ -417,7 +376,7 @@ void move(Tile *tiles[], Things_Manager *things) {
             things->Things[I].Box.y += things->Things[I].VelY;
 
             // If the dot went too far up or down or touched a wall
-            if ((things->Things[I].Box.y < 0) || (things->Things[I].Box.y + things->Things[I].height > LEVEL_HEIGHT) || touchesWall(things->Things[I].Box, tiles)) {
+            if ((things->Things[I].Box.y < 0) || (things->Things[I].Box.y + things->Things[I].Box.h > LEVEL_HEIGHT) || touchesWall(things->Things[I].Box, tiles)) {
                 // move back
                 things->Things[I].VelY = things->Things[I].VelY;
             }
@@ -427,9 +386,9 @@ void move(Tile *tiles[], Things_Manager *things) {
 
 void setCamera(SDL_Rect &camera, Things_Manager *things) {
     // Center the camera over the dot
-    // HARDCODED
-    camera.x = (things->Things[1].Box.x + things->Things[1].width / 2) - SCREEN_WIDTH / 2;
-    camera.y = (things->Things[1].Box.y + things->Things[1].height / 2) - SCREEN_HEIGHT / 2;
+    // HARDCODED the payer index is hard coded
+    camera.x = (things->Things[1].Box.x + things->Things[1].Box.w / 2) - SCREEN_WIDTH / 2;
+    camera.y = (things->Things[1].Box.y + things->Things[1].Box.h / 2) - SCREEN_HEIGHT / 2;
 
     // Keep the camera in bounds
     if (camera.x < 0) {

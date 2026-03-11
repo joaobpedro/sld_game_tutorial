@@ -33,8 +33,6 @@ struct Thing {
 
     // game data
     // dont need width and height these are part of the box
-    int width;
-    int height;
     int VelX;
     int VelY;
     float health;

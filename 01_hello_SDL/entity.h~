@@ -57,11 +57,11 @@ struct Thing {
     LTexture texture;
 
     // just to manage my fixed array of things
+    // FIXME i am not using these at all right now
     thing_ref Parent;
     thing_ref FirstChild;
     thing_ref NextSibling;
     thing_ref PrevSibling;
-
 };
 
 struct Things_Manager {

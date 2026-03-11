@@ -9,6 +9,7 @@
   * [x] IMCOMPLETE make monsters come alive
   * [x] !! IMPORTANT make entity system for the game
   * [x] give health properties and lives? maybe
+  * [x] --FIXME-- I do not need the width and the height they are in box
   * [ ] TODO expand the level, this one is very small
   * [ ] [General Fixes](#general-fixes)
   * [ ] Vector Mechanics - I need to make vector calculation helpers

@@ -22,18 +22,14 @@ int main() {
         // create Churro
         things.Things[1].kind = Kind::Player;
         things.Things[1].Box = {0,0};
-        things.Things[1].width = 32;
         things.Things[1].Box.w = 32;
         things.Things[1].Box.h = 32;
-        things.Things[1].height = 32;
         things.Things[1].path = "../Assets/churro_standing.png";
         things.Used[1] = 1;
         
         for (int J = 2; J < 20; J++){
             things.Things[J].kind = Kind::Monster;
             things.Things[J].Box = {getRandomInt(1,200),getRandomInt(1,200)};
-            things.Things[J].width = 32;
-            things.Things[J].height = 32;
             things.Things[J].Box.w = 32;
             things.Things[J].Box.h = 32;
             things.Things[J].health = 100;

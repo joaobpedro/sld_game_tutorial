@@ -3,10 +3,7 @@
 #include <SDL3/SDL_rect.h>
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_mixer/SDL_mixer.h>
-// #include <string>
-// #include <fstream>
 
-// #include "character.h"
 #include "globals.h"
 #include "helper.h"
 #include "tile.h"
@@ -14,8 +11,6 @@
 #include "vector.h"
 
 Things_Manager things;
-
-// init one character
 
 int main() {
     if (!init()) {
