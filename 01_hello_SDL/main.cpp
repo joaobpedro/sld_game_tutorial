@@ -23,8 +23,8 @@ int main() {
         things.Things[1].kind = Kind::Player;
         things.Things[1].Box = {0,0};
         things.Things[1].Box.w = 32;
-        things.Things[1].Box.h = 32;
-        things.Things[1].path = "../Assets/churro_standing.png";
+        things.Things[1].Box.h = 42;
+        things.Things[1].path = "../Assets/flying_churro1-sheet32.png";
         things.Used[1] = 1;
         
         for (int J = 2; J < 20; J++){

@@ -58,46 +58,7 @@ bool init() {
 }
 
 bool loadMedia(Tile *tiles[], Things_Manager* things) {
-    // Loading success flag
     bool success = true;
-
-    // // Load dot texture
-    // if (!gCharacterTexture[KEY_PRESS_SURFACE_DEFAULT].loadFromFile("../Assets/churro_standing.png")) {
-    //     printf("Failed to load dot texture!\n");
-    //     success = false;
-    // }
-    //
-    // if (!gCharacterTexture[KEY_PRESS_SURFACE_UP].loadFromFile("../Assets/churro_running_up.png")) {
-    //     printf("Failed to load dot texture!\n");
-    //     success = false;
-    // }
-    //
-    // if (!gCharacterTexture[KEY_PRESS_SURFACE_DOWN].loadFromFile("../Assets/churro_running_down.png")) {
-    //     printf("Failed to load dot texture!\n");
-    //     success = false;
-    // }
-    //
-    // if (!gCharacterTexture[KEY_PRESS_SURFACE_LEFT].loadFromFile("../Assets/churro_running_left.png")) {
-    //     printf("Failed to load dot texture!\n");
-    //     success = false;
-    // }
-    //
-    // if (!gCharacterTexture[KEY_PRESS_SURFACE_RIGHT].loadFromFile("../Assets/churro_running_right.png")) {
-    //     printf("Failed to load dot texture!\n");
-    //     success = false;
-    // }
-    //
-    // if( !gCharacterTexture[KEY_PRESS_SURFACE_DEFAULT].loadFromFile( "../Assets/churro_standing.png" ) )
-    // {
-    //     printf( "Failed to load dot texture!\n" );
-    //     success = false;
-    // }
-
-    // // load the monster texture
-    // if (!gMonsterTexture.loadFromFile("../Assets/monster.png")) {
-    //     printf("Failed to load monster texture!\n");
-    //     success = false;
-    // }
 
     // Load tile texture
     if (!gTileTexture.loadFromFile("../Assets/forest_tiles_small.png")) {
@@ -333,8 +294,6 @@ bool touchesWall(SDL_Rect box, Tile *tiles[]) {
 }
 
 void render(Things_Manager* things, SDL_Rect &camera) {
-    // Show the dot
-    // here I can define the redering
     for (int I = 1; I < MAX_NUMBER_THINGS; I++) {
         if(things->Used[I] == 1) {
             things->Things[I].texture.render(things->Things[I].Box.x - camera.x, things->Things[I].Box.y - camera.y, &things->Things[I].CurrentClip);
@@ -427,7 +386,7 @@ void move(Tile *tiles[], Things_Manager *things) {
 
 void setCamera(SDL_Rect &camera, Things_Manager *things) {
     // Center the camera over the dot
-    // HARDCODED
+    // HARDCODED the payer index is hard coded
     camera.x = (things->Things[1].Box.x + things->Things[1].Box.w / 2) - SCREEN_WIDTH / 2;
     camera.y = (things->Things[1].Box.y + things->Things[1].Box.h / 2) - SCREEN_HEIGHT / 2;
 

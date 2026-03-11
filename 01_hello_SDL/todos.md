@@ -10,6 +10,7 @@
   * [x] !! IMPORTANT make entity system for the game
   * [x] give health properties and lives? maybe
   * [x] --FIXME-- I do not need the width and the height they are in box
+  * [ ] I am making a churrito better sprite but its not 32x32
   * [ ] TODO expand the level, this one is very small
   * [ ] [General Fixes](#general-fixes)
   * [ ] Vector Mechanics - I need to make vector calculation helpers

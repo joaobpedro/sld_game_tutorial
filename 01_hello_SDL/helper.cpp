@@ -427,8 +427,6 @@ void animate(int &frame, SDL_FRect &currentClip) {
         frame = 0;
     }
 
-    // this should be WakingAnimationFrames but clangd is complaining that this is variable
-    // so I am hardcoding this to 6
     // HARDCODED this frames per animation needs to come from somewhere,
     // but right now is hard coded, its my cabin anyway
     SDL_FRect spriteClips[6] = {
