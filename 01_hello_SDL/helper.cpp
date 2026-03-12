@@ -30,6 +30,8 @@ int getRandomInt(int min, int max) {
     return dist(gen);
 }
 
+// get grid valid points.
+
 
 bool init() {
     // Initialization flag
@@ -57,7 +59,7 @@ bool init() {
     return success;
 }
 
-bool loadMedia(Tile *tiles[], Things_Manager* things) {
+bool loadMedia(Tile *tiles[], int *valid_tiles[], Things_Manager* things) {
     bool success = true;
 
     // Load tile texture
@@ -67,7 +69,7 @@ bool loadMedia(Tile *tiles[], Things_Manager* things) {
     }
 
     // Load tile map
-    if (!setTiles(tiles)) {
+    if (!setTiles(tiles, valid_tiles)) {
         printf("Failed to load tile set!\n");
         success = false;
     }
@@ -150,7 +152,7 @@ bool checkCollision(SDL_Rect a, SDL_Rect b) {
     return true;
 }
 
-bool setTiles(Tile *tiles[]) {
+bool setTiles(Tile *tiles[], int *valid_tiles[]) {
     // Success flag
     bool tilesLoaded = true;
 
@@ -184,6 +186,9 @@ bool setTiles(Tile *tiles[]) {
             // If the number is a valid tile number
             if ((tileType >= 0) && (tileType < TOTAL_TILE_SPRITES)) {
                 tiles[i] = new Tile(x, y, tileType);
+                if (tileType == 0 || tileType == 1 | tileType == 2){
+                    valid_tiles[i] = i;
+                }
             }
             // If we don't recognize the tile type
             else {
@@ -378,7 +383,7 @@ void move(Tile *tiles[], Things_Manager *things) {
             // If the dot went too far up or down or touched a wall
             if ((things->Things[I].Box.y < 0) || (things->Things[I].Box.y + things->Things[I].Box.h > LEVEL_HEIGHT) || touchesWall(things->Things[I].Box, tiles)) {
                 // move back
-                things->Things[I].VelY = things->Things[I].VelY;
+                things->Things[I].VelY = -1*things->Things[I].VelY;
             }
         }
     }
@@ -413,12 +418,30 @@ void kill_monster(Things_Manager *things) {
                 if (things->Things[I].health <= 0){
                     things->Used[I] == 0;
                     things->Things[I] = Thing();
+                    things->MonsterCount--;
                 }
             }
         }
     }
 
 }
+
+void spawn_monster(Things_Manager *things){
+    for (int I = 2; I < MAX_NUMBER_THINGS; I++) {
+        if (things->Used[I] == 0 && things->MonsterCount < MAX_NUMBER_OF_MONSTERS){
+            things->Things[I].kind = Kind::Monster;
+            things->Things[I].Box = {getRandomInt(1,LEVEL_WIDTH),getRandomInt(1,LEVEL_HEIGHT)};
+            things->Things[I].Box.w = 32;
+            things->Things[I].Box.h = 32;
+            things->Things[I].health = 100;
+            things->Things[I].VelX = 1;
+            things->Things[I].VelY = 1;
+            things->Things[I].path = "../Assets/monster.png";
+            things->Used[I] = 1;
+            things->MonsterCount++;
+        }
+    }
+};
 
 // animate any thing
 void animate(int &frame, SDL_FRect &currentClip) {

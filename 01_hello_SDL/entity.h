@@ -9,6 +9,7 @@
 
 // this will be an array of structs
 #define MAX_NUMBER_THINGS 1024
+#define MAX_NUMBER_OF_MONSTERS 30
 
 // FIXME right now I am not using this for anything
 struct thing_ref {
@@ -69,6 +70,7 @@ struct Things_Manager {
     int NextFree;
     int LastFree;
     int ThingsCount;
+    int MonsterCount;
 
     void update_array(int Things[], int size);
 };

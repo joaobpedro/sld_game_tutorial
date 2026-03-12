@@ -18,6 +18,7 @@ int main() {
     } else {
         // The level tiles
         Tile *tileSet[TOTAL_TILES];
+        int *valid_tileset[TOTAL_TILES];
 
         // create Churro
         things.Things[1].kind = Kind::Player;
@@ -27,9 +28,9 @@ int main() {
         things.Things[1].path = "../Assets/flying_churro1-sheet32.png";
         things.Used[1] = 1;
         
-        for (int J = 2; J < 20; J++){
+        for (int J = 2; J < MAX_NUMBER_OF_MONSTERS; J++){
             things.Things[J].kind = Kind::Monster;
-            things.Things[J].Box = {getRandomInt(1,200),getRandomInt(1,200)};
+            things.Things[J].Box = {getRandomInt(1,LEVEL_WIDTH),getRandomInt(1,LEVEL_HEIGHT)};
             things.Things[J].Box.w = 32;
             things.Things[J].Box.h = 32;
             things.Things[J].health = 100;
@@ -37,10 +38,11 @@ int main() {
             things.Things[J].VelY = 1;
             things.Things[J].path = "../Assets/monster.png";
             things.Used[J] = 1;
+            things.MonsterCount++;
         }
 
         // Load media
-        if (!loadMedia(tileSet, &things)) {
+        if (!loadMedia(tileSet, valid_tileset, &things)) {
             printf("Failed to load media!\n");
         } 
 
@@ -75,6 +77,8 @@ int main() {
             render(&things, camera);
             SDL_RenderPresent(gRenderer);
             frame++;
+            // spawn monsters here if the monster count is less than a number
+            spawn_monster(&things);
         }
         close(tileSet, &things);
     }

@@ -17,7 +17,7 @@ int getRandomInt(int min, int max);
 bool init();
 
 //Loads media
-bool loadMedia( Tile* tiles[] ,Things_Manager *things);
+bool loadMedia( Tile* tiles[], int *valid_tiles[], Things_Manager *things);
 
 //Frees media and shuts down SDL
 void close( Tile* tiles[] ,Things_Manager *things);
@@ -29,7 +29,7 @@ bool checkCollision( SDL_Rect a, SDL_Rect b );
 bool touchesWall( SDL_Rect box, Tile* tiles[] );
 
 //Sets tiles from tile map
-bool setTiles( Tile *tiles[] );
+bool setTiles( Tile *tiles[], int *valid_tiles[]);
 
 // render all objects
 void render(Things_Manager* things, SDL_Rect &camera);
@@ -45,6 +45,9 @@ void setCamera(SDL_Rect &camera, Things_Manager *things);
 
 // kill monster by touching
 void kill_monster(Things_Manager *things);
+
+// spawn new monsters so we can keep playing
+void spawn_monster(Things_Manager *things);
 
 // animate sprites
 void animate(int &frame, SDL_FRect &currentClip);
