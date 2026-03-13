@@ -20,6 +20,7 @@ int main() {
         // The level tiles
         Tile *tileSet[TOTAL_TILES];
         valid_tiles spawn_tiles;
+        spawn_tiles.valid_count = 0; // initializ the cout to zero
 
         // create Churro
         things.Things[1].kind = Kind::Player;
@@ -29,7 +30,7 @@ int main() {
         things.Things[1].path = "../Assets/flying_churro1-sheet32.png";
         things.Used[1] = 1;
         
-        for (int J = 2; J < MAX_NUMBER_OF_MONSTERS; J++){
+        for (int J = 2; J < MAX_NUMBER_OF_MONSTERS+2; J++){
             things.Things[J].kind = Kind::Monster;
             things.Things[J].Box.w = 32;
             things.Things[J].Box.h = 32;
@@ -53,7 +54,7 @@ int main() {
         int frame{-1};
 
         // now I can place the monsters because now I have the tiles setted
-        for (int I = 2; I<MAX_NUMBER_OF_MONSTERS; I++){
+        for (int I = 2; I<MAX_NUMBER_OF_MONSTERS+2; I++){
             int random_entry = getRandomInt(1, spawn_tiles.valid_count);
             things.Things[I].Box = {spawn_tiles.x[random_entry], spawn_tiles.y[random_entry]};
         }
@@ -75,6 +76,8 @@ int main() {
                 tileSet[i]->render(camera);
             }
             kill_monster(&things);
+            // spawn monsters here if the monster count is less than a number
+            spawn_monster(&things, &spawn_tiles);
             for (int I = 1; I<MAX_NUMBER_THINGS; I++){
                 if(things.Used[I] == 1){
                     animate(frame, things.Things[I].CurrentClip);
@@ -83,8 +86,6 @@ int main() {
             render(&things, camera);
             SDL_RenderPresent(gRenderer);
             frame++;
-            // spawn monsters here if the monster count is less than a number
-            spawn_monster(&things, &spawn_tiles);
         }
         close(tileSet, &things);
     }

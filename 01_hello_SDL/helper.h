@@ -69,3 +69,6 @@ extern SDL_Renderer* gRenderer;
 //Scene textures
 extern LTexture gTileTexture;
 extern SDL_FRect gTileClips[];
+
+
+// implementation below

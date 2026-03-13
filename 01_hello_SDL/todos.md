@@ -91,4 +91,5 @@ array with some things and thats it
 random
 * [x] the monster generation needs to be more random and only in
 playable places of the game
+* [ ] FIXME IMPORTANT there is a seg fault in the pop os built? I do not understand why
 

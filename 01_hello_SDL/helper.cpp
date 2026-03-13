@@ -424,9 +424,9 @@ void kill_monster(Things_Manager *things) {
             if (checkCollision(things->Things[1].Box, things->Things[I].Box)) {
                 things->Things[I].health -= 5;
                 if (things->Things[I].health <= 0){
-                    things->Used[I] == 0;
-                    things->Things[I] = Thing();
-                    things->MonsterCount--;
+                    things->Used[I] = 0;
+                    things->Things[I] = Thing{};
+                    things->MonsterCount -= 1;
                 }
             }
         }
@@ -447,7 +447,7 @@ void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
             things->Things[I].VelY = 1;
             things->Things[I].path = "../Assets/monster.png";
             things->Used[I] = 1;
-            things->MonsterCount++;
+            things->MonsterCount += 1;
         }
     }
 };
