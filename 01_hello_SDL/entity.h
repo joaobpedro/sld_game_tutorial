@@ -61,6 +61,14 @@ struct Thing {
     thing_ref FirstChild;
     thing_ref NextSibling;
     thing_ref PrevSibling;
+
+    // private:
+    //
+    // void loadMedia(){
+    //     if (path) {
+    //         texture.loadFromFile(path);
+    //     }
+    // }
 };
 
 struct Things_Manager {

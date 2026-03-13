@@ -427,7 +427,7 @@ void kill_monster(Things_Manager *things) {
                     things->Used[I] = 0;
                     things->Things[I] = Thing{};
                     things->MonsterCount -= 1;
-                    printf("Kill : Monster count: %d\n", things->MonsterCount);
+                    // printf("Kill : Monster count: %d\n", things->MonsterCount);
                 }
             }
         }
@@ -448,15 +448,16 @@ void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
             things->Things[I].VelX = 1;
             things->Things[I].VelY = 1;
             things->Things[I].path = "../Assets/monster.png";
+            things->Things[I].texture.loadFromFile(things->Things[I].path);
             things->Used[I] = 1;
             things->MonsterCount += 1;
-            printf("Monster loaded from: %s\n", things->Things[I].path);
-            printf("Spawn : Monster creater at: %d\n", things->Things[I].Box.x);
-            printf("Spawn : Monster count: %d\n", things->MonsterCount);
-            for (auto item : things->Used){
-                printf("%d ", item);
-            }
-            printf("\n");
+            // printf("Monster loaded from: %s\n", things->Things[I].path);
+            // printf("Spawn : Monster creater at: %d\n", things->Things[I].Box.x);
+            // printf("Spawn : Monster count: %d\n", things->MonsterCount);
+            // for (auto item : things->Used){
+            //     printf("%d ", item);
+            // }
+            // printf("\n");
         }
     }
 };
