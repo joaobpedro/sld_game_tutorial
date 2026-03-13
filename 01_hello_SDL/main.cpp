@@ -12,17 +12,18 @@
 
 Things_Manager things;
 
+
 int main() {
     if (!init()) {
         return 1;
     } else {
         // The level tiles
         Tile *tileSet[TOTAL_TILES];
-        int *valid_tileset[TOTAL_TILES];
+        valid_tiles spawn_tiles;
 
         // create Churro
         things.Things[1].kind = Kind::Player;
-        things.Things[1].Box = {0,0};
+        things.Things[1].Box = {0,0}; // the player alway starts at this position
         things.Things[1].Box.w = 32;
         things.Things[1].Box.h = 42;
         things.Things[1].path = "../Assets/flying_churro1-sheet32.png";
@@ -30,7 +31,6 @@ int main() {
         
         for (int J = 2; J < MAX_NUMBER_OF_MONSTERS; J++){
             things.Things[J].kind = Kind::Monster;
-            things.Things[J].Box = {getRandomInt(1,LEVEL_WIDTH),getRandomInt(1,LEVEL_HEIGHT)};
             things.Things[J].Box.w = 32;
             things.Things[J].Box.h = 32;
             things.Things[J].health = 100;
@@ -42,7 +42,7 @@ int main() {
         }
 
         // Load media
-        if (!loadMedia(tileSet, valid_tileset, &things)) {
+        if (!loadMedia(tileSet, &spawn_tiles, &things)) {
             printf("Failed to load media!\n");
         } 
 
@@ -51,6 +51,12 @@ int main() {
         SDL_Event e;
 
         int frame{-1};
+
+        // now I can place the monsters because now I have the tiles setted
+        for (int I = 2; I<MAX_NUMBER_OF_MONSTERS; I++){
+            int random_entry = getRandomInt(1, spawn_tiles.valid_count);
+            things.Things[I].Box = {spawn_tiles.x[random_entry], spawn_tiles.y[random_entry]};
+        }
 
         while (!quit) {
             // Handle events on queue
@@ -78,7 +84,7 @@ int main() {
             SDL_RenderPresent(gRenderer);
             frame++;
             // spawn monsters here if the monster count is less than a number
-            spawn_monster(&things);
+            spawn_monster(&things, &spawn_tiles);
         }
         close(tileSet, &things);
     }

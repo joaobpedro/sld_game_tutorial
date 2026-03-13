@@ -10,6 +10,14 @@
 #include "tile.h"
 #include "entity.h"
 
+// lets make a global struct to hold the good tile
+struct valid_tiles {
+    int isvalid[TOTAL_TILES];
+    int x[TOTAL_TILES];
+    int y[TOTAL_TILES];
+    int valid_count;
+};
+
 // generates random numbers
 int getRandomInt(int min, int max); 
 
@@ -17,7 +25,7 @@ int getRandomInt(int min, int max);
 bool init();
 
 //Loads media
-bool loadMedia( Tile* tiles[], int *valid_tiles[], Things_Manager *things);
+bool loadMedia( Tile* tiles[], valid_tiles *spawn_tiles, Things_Manager *things);
 
 //Frees media and shuts down SDL
 void close( Tile* tiles[] ,Things_Manager *things);
@@ -29,7 +37,7 @@ bool checkCollision( SDL_Rect a, SDL_Rect b );
 bool touchesWall( SDL_Rect box, Tile* tiles[] );
 
 //Sets tiles from tile map
-bool setTiles( Tile *tiles[], int *valid_tiles[]);
+bool setTiles( Tile *tiles[], valid_tiles *spawn_tiles);
 
 // render all objects
 void render(Things_Manager* things, SDL_Rect &camera);
@@ -47,7 +55,7 @@ void setCamera(SDL_Rect &camera, Things_Manager *things);
 void kill_monster(Things_Manager *things);
 
 // spawn new monsters so we can keep playing
-void spawn_monster(Things_Manager *things);
+void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles);
 
 // animate sprites
 void animate(int &frame, SDL_FRect &currentClip);

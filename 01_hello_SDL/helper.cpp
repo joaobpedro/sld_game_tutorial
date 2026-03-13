@@ -59,7 +59,7 @@ bool init() {
     return success;
 }
 
-bool loadMedia(Tile *tiles[], int *valid_tiles[], Things_Manager* things) {
+bool loadMedia(Tile *tiles[], valid_tiles *spawn_tiles, Things_Manager* things) {
     bool success = true;
 
     // Load tile texture
@@ -69,7 +69,7 @@ bool loadMedia(Tile *tiles[], int *valid_tiles[], Things_Manager* things) {
     }
 
     // Load tile map
-    if (!setTiles(tiles, valid_tiles)) {
+    if (!setTiles(tiles, spawn_tiles)) {
         printf("Failed to load tile set!\n");
         success = false;
     }
@@ -152,7 +152,7 @@ bool checkCollision(SDL_Rect a, SDL_Rect b) {
     return true;
 }
 
-bool setTiles(Tile *tiles[], int *valid_tiles[]) {
+bool setTiles(Tile *tiles[], valid_tiles *spawn_tiles) {
     // Success flag
     bool tilesLoaded = true;
 
@@ -186,9 +186,17 @@ bool setTiles(Tile *tiles[], int *valid_tiles[]) {
             // If the number is a valid tile number
             if ((tileType >= 0) && (tileType < TOTAL_TILE_SPRITES)) {
                 tiles[i] = new Tile(x, y, tileType);
-                if (tileType == 0 || tileType == 1 | tileType == 2){
-                    valid_tiles[i] = i;
+                if (tileType == 0 || tileType == 1 || tileType == 2){
+                    spawn_tiles->isvalid[spawn_tiles->valid_count+1] = 1;
+                    spawn_tiles->x[spawn_tiles->valid_count+1] = x + TILE_WIDTH/2; // this points to the center of the tile
+                    spawn_tiles->y[spawn_tiles->valid_count+1] = y + TILE_HEIGHT/2;
+                    spawn_tiles->valid_count++;
                 }
+                // } else {
+                //     spawn_tiles->isvalid[i] = 0;
+                //     spawn_tiles->x[i] = 0;
+                //     spawn_tiles->y[i] = 0;
+                // }
             }
             // If we don't recognize the tile type
             else {
@@ -426,11 +434,12 @@ void kill_monster(Things_Manager *things) {
 
 }
 
-void spawn_monster(Things_Manager *things){
+void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
     for (int I = 2; I < MAX_NUMBER_THINGS; I++) {
         if (things->Used[I] == 0 && things->MonsterCount < MAX_NUMBER_OF_MONSTERS){
             things->Things[I].kind = Kind::Monster;
-            things->Things[I].Box = {getRandomInt(1,LEVEL_WIDTH),getRandomInt(1,LEVEL_HEIGHT)};
+            int random_entry = getRandomInt(1, spawn_tiles->valid_count);
+            things->Things[I].Box = {spawn_tiles->x[random_entry],spawn_tiles->y[random_entry]};
             things->Things[I].Box.w = 32;
             things->Things[I].Box.h = 32;
             things->Things[I].health = 100;

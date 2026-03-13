@@ -70,7 +70,7 @@
     * [x] kill monster
         * [ ] now need a proper animation for the kill monster
     ...
-* [ ] --FIXME--: there is a bug in the event handling and the access to the player data is not as I imagined
+* [x] --FIXME--: there is a bug in the event handling and the access to the player data is not as I imagined
 need to check the pointer/ref/adresses stuff.
     * [x] NOTE FIXED seems fixed for now
 
@@ -83,11 +83,12 @@ need to check the pointer/ref/adresses stuff.
 data for all components
 * [ ] FIXME right now i am not managing entities at all, just populating the 
 array with some things and thats it
+* [ ] FIXME the monsters seem to run out after a while
 
-## General Fixes
-* [ ] the monsters are not interacting with the walls properly
-* [ ] the velocity of the monsters is not proper, they need to be more
+## FIXME General Fixes
+* [x] the monsters are not interacting with the walls properly
+* [x] the velocity of the monsters is not proper, they need to be more
 random
-* [ ] the monster generation needs to be more random and only in
+* [x] the monster generation needs to be more random and only in
 playable places of the game
 

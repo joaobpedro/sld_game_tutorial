@@ -3,6 +3,8 @@
 
 #include<SDL3_mixer/SDL_mixer.h>
 
+#define TOTAL_TILES 192
+
 extern const int STD_VEL;
 
 //Screen dimension constants
@@ -16,7 +18,7 @@ extern const int LEVEL_HEIGHT;
 //Tile constants
 extern const int TILE_WIDTH;
 extern const int TILE_HEIGHT;
-extern const int TOTAL_TILES;
+// extern const int TOTAL_TILES;
 // extern constexpr int TOTAL_TILE_SPRITES;
 
 //The different tile sprites

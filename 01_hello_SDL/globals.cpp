@@ -12,7 +12,7 @@ extern const int LEVEL_HEIGHT = 960;
 //Tile constants
 extern const int TILE_WIDTH = 80;
 extern const int TILE_HEIGHT = 80;
-extern const int TOTAL_TILES = 192;
+// extern const int TOTAL_TILES = 192;
 // extern constexpr int TOTAL_TILE_SPRITES = 12;
 
 //The different tile sprites
