@@ -8,7 +8,7 @@
 #include "texture.h"
 
 // this will be an array of structs
-#define MAX_NUMBER_THINGS 1024
+#define MAX_NUMBER_THINGS 10
 #define MAX_NUMBER_OF_MONSTERS 3
 
 // FIXME right now I am not using this for anything

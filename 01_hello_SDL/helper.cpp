@@ -427,6 +427,7 @@ void kill_monster(Things_Manager *things) {
                     things->Used[I] = 0;
                     things->Things[I] = Thing{};
                     things->MonsterCount -= 1;
+                    printf("Kill : Monster count: %d\n", things->MonsterCount);
                 }
             }
         }
@@ -437,6 +438,7 @@ void kill_monster(Things_Manager *things) {
 void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
     for (int I = 2; I < MAX_NUMBER_THINGS; I++) {
         if (things->Used[I] == 0 && things->MonsterCount < MAX_NUMBER_OF_MONSTERS){
+            things->Things[I] = Thing{};
             things->Things[I].kind = Kind::Monster;
             int random_entry = getRandomInt(1, spawn_tiles->valid_count);
             things->Things[I].Box = {spawn_tiles->x[random_entry],spawn_tiles->y[random_entry]};
@@ -448,6 +450,13 @@ void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
             things->Things[I].path = "../Assets/monster.png";
             things->Used[I] = 1;
             things->MonsterCount += 1;
+            printf("Monster loaded from: %s\n", things->Things[I].path);
+            printf("Spawn : Monster creater at: %d\n", things->Things[I].Box.x);
+            printf("Spawn : Monster count: %d\n", things->MonsterCount);
+            for (auto item : things->Used){
+                printf("%d ", item);
+            }
+            printf("\n");
         }
     }
 };
