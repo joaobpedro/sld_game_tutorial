@@ -8,8 +8,8 @@
 #include "texture.h"
 
 // this will be an array of structs
-#define MAX_NUMBER_THINGS 10
-#define MAX_NUMBER_OF_MONSTERS 3
+#define MAX_NUMBER_THINGS 1000
+#define MAX_NUMBER_OF_MONSTERS 30
 
 // FIXME right now I am not using this for anything
 struct thing_ref {
@@ -62,13 +62,6 @@ struct Thing {
     thing_ref NextSibling;
     thing_ref PrevSibling;
 
-    // private:
-    //
-    // void loadMedia(){
-    //     if (path) {
-    //         texture.loadFromFile(path);
-    //     }
-    // }
 };
 
 struct Things_Manager {
