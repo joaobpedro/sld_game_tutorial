@@ -424,10 +424,7 @@ void kill_monster(Things_Manager *things) {
             if (checkCollision(things->Things[1].Box, things->Things[I].Box)) {
                 things->Things[I].health -= 5;
                 if (things->Things[I].health <= 0){
-                    things->Used[I] = 0;
-                    things->Things[I] = Thing{};
-                    things->MonsterCount -= 1;
-                    // printf("Kill : Monster count: %d\n", things->MonsterCount);
+                    things->remove(things->Things[I].ref);
                 }
             }
         }
@@ -437,27 +434,23 @@ void kill_monster(Things_Manager *things) {
 
 void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
     for (int I = 2; I < MAX_NUMBER_THINGS; I++) {
-        if (things->Used[I] == 0 && things->MonsterCount < MAX_NUMBER_OF_MONSTERS){
-            things->Things[I] = Thing{};
-            things->Things[I].kind = Kind::Monster;
+        // NOTE TODO the logic here is not great, need to improve the iterations of the things
+        // but works for now
+        if (things->Used[I] == 0 && things->MonsterCount < MAX_NUMBER_OF_MONSTERS && things->Gen[I] < 2 && I <= MAX_NUMBER_OF_MONSTERS+1){
+            printf("number: %d\n", I);
+            ThingRef MonsterIdx = things->add_things(Kind::Monster);
+            printf("Created Idx: %d\n", MonsterIdx.Idx);
+            things->get(MonsterIdx).ref = MonsterIdx;
+            things->get(MonsterIdx).Box.w = 32;
+            things->get(MonsterIdx).Box.h = 32;
+            things->get(MonsterIdx).VelX = 1;
+            things->get(MonsterIdx).VelY = 1;
+            things->get(MonsterIdx).health = 100;
+            things->get(MonsterIdx).path = "../Assets/monster.png";
+
             int random_entry = getRandomInt(1, spawn_tiles->valid_count);
-            things->Things[I].Box = {spawn_tiles->x[random_entry],spawn_tiles->y[random_entry]};
-            things->Things[I].Box.w = 32;
-            things->Things[I].Box.h = 32;
-            things->Things[I].health = 100;
-            things->Things[I].VelX = 1;
-            things->Things[I].VelY = 1;
-            things->Things[I].path = "../Assets/monster.png";
-            things->Things[I].texture.loadFromFile(things->Things[I].path);
-            things->Used[I] = 1;
-            things->MonsterCount += 1;
-            // printf("Monster loaded from: %s\n", things->Things[I].path);
-            // printf("Spawn : Monster creater at: %d\n", things->Things[I].Box.x);
-            // printf("Spawn : Monster count: %d\n", things->MonsterCount);
-            // for (auto item : things->Used){
-            //     printf("%d ", item);
-            // }
-            // printf("\n");
+            things->get(MonsterIdx).Box = {spawn_tiles->x[random_entry], spawn_tiles->y[random_entry]};
+            things->get(MonsterIdx).texture.loadFromFile(things->get(MonsterIdx).path);
         }
     }
 };

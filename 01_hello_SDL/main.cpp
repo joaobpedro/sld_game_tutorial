@@ -23,23 +23,22 @@ int main() {
         spawn_tiles.valid_count = 0; // initializ the cout to zero
 
         // create Churro
-        things.Things[1].kind = Kind::Player;
-        things.Things[1].Box = {0,0}; // the player alway starts at this position
-        things.Things[1].Box.w = 32;
-        things.Things[1].Box.h = 42;
-        things.Things[1].path = "../Assets/flying_churro1-sheet32.png";
-        things.Used[1] = 1;
+        ThingRef PlayerIdx = things.add_things(Kind::Player);
+        things.get(PlayerIdx).ref = PlayerIdx;
+        things.get(PlayerIdx).Box = {0,0};
+        things.get(PlayerIdx).Box.w = 42;
+        things.get(PlayerIdx).Box.h = 32;
+        things.get(PlayerIdx).path = "../Assets/flying_churro1-sheet32.png";
         
-        for (int J = 2; J < MAX_NUMBER_OF_MONSTERS+2; J++){
-            things.Things[J].kind = Kind::Monster;
-            things.Things[J].Box.w = 32;
-            things.Things[J].Box.h = 32;
-            things.Things[J].health = 100;
-            things.Things[J].VelX = 1;
-            things.Things[J].VelY = 1;
-            things.Things[J].path = "../Assets/monster.png";
-            things.Used[J] = 1;
-            things.MonsterCount++;
+        for (int I = 2; I < MAX_NUMBER_OF_MONSTERS+2; I++){
+            ThingRef MonsterIdx = things.add_things(Kind::Monster);
+            things.get(MonsterIdx).ref = MonsterIdx;
+            things.get(MonsterIdx).Box.w = 32;
+            things.get(MonsterIdx).Box.h = 32;
+            things.get(MonsterIdx).VelX = 1;
+            things.get(MonsterIdx).VelY = 1;
+            things.get(MonsterIdx).health = 100;
+            things.get(MonsterIdx).path = "../Assets/monster.png";
         }
 
         // Load media

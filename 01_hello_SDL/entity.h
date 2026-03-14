@@ -9,9 +9,9 @@
 
 // this will be an array of structs
 #define MAX_NUMBER_THINGS 1000
-#define MAX_NUMBER_OF_MONSTERS 30
+#define MAX_NUMBER_OF_MONSTERS 3
 
-// FIXME right now I am not using this for anything
+// right now I am not using this for anything
 struct ThingRef {
     int Idx;
     int Gen;
@@ -91,6 +91,10 @@ struct Things_Manager {
             Things[slot].kind = kind;
             Used[slot] = 1;
             Gen[slot] += 1;
+            printf("Generation slot: %d\n", Gen[slot]);
+            if(kind == Kind::Monster) {
+                MonsterCount++;
+            }
             return {slot, Gen[slot]};
         } else {
             return ThingRef::nil();
@@ -98,7 +102,11 @@ struct Things_Manager {
     };
     
     void remove(ThingRef ref) {
-        Used[deref(ref)] = 0;
+        int slot = deref(ref);
+        Used[slot] = 0;
+        if(Things[slot].kind == Kind::Monster){
+            MonsterCount--;
+        }
     }
 
     Thing& get(ThingRef ref){
@@ -109,7 +117,7 @@ struct Things_Manager {
 
     int find_empty(){
         for (int I = 1; I<MAX_NUMBER_THINGS; ++I){
-            if (!Used[I]) {
+            if (Used[I] == 0) {
                 return I;
             }
         }

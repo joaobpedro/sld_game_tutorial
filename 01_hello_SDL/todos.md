@@ -69,8 +69,8 @@
         
     * [x] kill monster
         * [ ] now need a proper animation for the kill monster
-    * [ ] spawn monster
-        * [ ] need to stop spawning monsters after generation three?
+    * [x] spawn monster
+        * [x] need to stop spawning monsters after generation three?
     ...
 * [x] --FIXME--: there is a bug in the event handling and the access to the player data is not as I imagined
 need to check the pointer/ref/adresses stuff.
@@ -83,8 +83,8 @@ need to check the pointer/ref/adresses stuff.
 * [x] I need to use templates to add a components and such
 * [x] entities will not be modular, they will have all the 
 data for all components
-* [x] FIXME the monsters seem to run out after a while
-* [ ] FIXME right now i am not managing entities at all, just populating the 
+* [x] --FIXME-- the monsters seem to run out after a while
+* [x] --FIXME-- right now i am not managing entities at all, just populating the 
 array with some things and thats it
 
 ## General Fixes
