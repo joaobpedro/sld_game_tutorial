@@ -12,9 +12,13 @@
 #define MAX_NUMBER_OF_MONSTERS 30
 
 // FIXME right now I am not using this for anything
-struct thing_ref {
-    int thingIdx;
-    int thingGen;
+struct ThingRef {
+    int Idx;
+    int Gen;
+
+    static ThingRef nil() {
+        return {0,0};
+    }
 };
 
 // all kinds of things in my game
@@ -28,7 +32,7 @@ enum class Kind {
 struct Thing {
     // thing ref
 
-    thing_ref ref;
+    ThingRef ref;
 
     // things kind
     Kind kind;
@@ -61,10 +65,10 @@ struct Thing {
 
     // just to manage my fixed array of things
     // FIXME i am not using these at all right now
-    thing_ref Parent;
-    thing_ref FirstChild;
-    thing_ref NextSibling;
-    thing_ref PrevSibling;
+    ThingRef Parent;
+    ThingRef FirstChild;
+    ThingRef NextSibling;
+    ThingRef PrevSibling;
 
 };
 
@@ -72,6 +76,7 @@ struct Things_Manager {
 
     Thing Things[MAX_NUMBER_THINGS];
     int Used[MAX_NUMBER_THINGS];
+    int Gen[MAX_NUMBER_THINGS];
     int NextFree;
     int LastFree;
     int ThingsCount;
@@ -79,13 +84,45 @@ struct Things_Manager {
 
     void update_array(int Things[], int size);
 
+    ThingRef add_things(Kind kind){
+        int slot = find_empty();
+        if(slot) {
+            Things[slot] = Thing{};
+            Things[slot].kind = kind;
+            Used[slot] = 1;
+            Gen[slot] += 1;
+            return {slot, Gen[slot]};
+        } else {
+            return ThingRef::nil();
+        }
+    };
+    
+    void remove(ThingRef ref) {
+        Used[deref(ref)] = 0;
+    }
+
+    Thing& get(ThingRef ref){
+        return Things[deref(ref)];
+    };
+
     private: 
 
-    void add_things(Kind kind){
-        int slot;
-        
-
+    int find_empty(){
+        for (int I = 1; I<MAX_NUMBER_THINGS; ++I){
+            if (!Used[I]) {
+                return I;
+            }
+        }
+        return 0;
     };
+
+    int deref(ThingRef ref) {
+        if(ref.Idx > 0 && ref.Idx < MAX_NUMBER_THINGS && Used[ref.Idx] && ref.Gen == Gen[ref.Idx]){
+            return ref.Idx;
+        } else {
+            return 0;
+        }
+    }
 };
 
 #endif
