@@ -11,6 +11,7 @@
   * [x] give health properties and lives? maybe
   * [x] --FIXME-- I do not need the width and the height they are in box
   * [ ] I am making a churrito better sprite but its not 32x32
+  * [ ] [Iterator](#iterator) make an iterator
   * [ ] TODO expand the level, this one is very small
   * [ ] [General Fixes](#general-fixes)
   * [ ] Vector Mechanics - I need to make vector calculation helpers
@@ -86,6 +87,16 @@ data for all components
 * [x] --FIXME-- the monsters seem to run out after a while
 * [x] --FIXME-- right now i am not managing entities at all, just populating the 
 array with some things and thats it
+
+
+## Iterator
+* [ ] first lets split the things array into small arrays
+    - one for players, one for monsters, one for items, one for threes.... etc
+* [ ] now lets get a way to iterate only on this sub arrays
+    * [ ] to begin it can be with fors and ifs just to make it easy, its my cabin
+    * [ ] make it more fancy, with C++ syntax or ways:? 
+* [ ] change the code as needed
+    * [ ] spawn function comes to mind
 
 ## General Fixes
 * [x] the monsters are not interacting with the walls properly
