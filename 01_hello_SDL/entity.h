@@ -26,6 +26,10 @@ enum class Kind {
 };
 
 struct Thing {
+    // thing ref
+
+    thing_ref ref;
+
     // things kind
     Kind kind;
 
@@ -74,6 +78,14 @@ struct Things_Manager {
     int MonsterCount;
 
     void update_array(int Things[], int size);
+
+    private: 
+
+    void add_things(Kind kind){
+        int slot;
+        
+
+    };
 };
 
 #endif
