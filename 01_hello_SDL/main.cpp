@@ -70,7 +70,7 @@ int main() {
         // 4. Load the Background Music
         // The 'false' here is important! It means "Stream this from the hard drive."
         // For long music, you want 'false'. For short sound effects, use 'true' to pre-load them into RAM.
-        MIX_Audio* bgmAudio = MIX_LoadAudio(mixer, "../Assets/SpriteDance.mp3", false);
+        MIX_Audio* bgmAudio = MIX_LoadAudio(mixer, "../Assets/Churros_dance.mp3", false);
     
         // 5. Create a Track to play the music on
         MIX_Track* bgmTrack = MIX_CreateTrack(mixer);
@@ -82,10 +82,15 @@ int main() {
         // SDL3 uses "Properties" to pass in extra settings like looping
         SDL_PropertiesID props = SDL_CreateProperties();
         SDL_SetNumberProperty(props, MIX_PROP_PLAY_LOOPS_NUMBER, -1); // -1 means infinite loops
-        
         MIX_PlayTrack(bgmTrack, props);
         
         SDL_DestroyProperties(props); // Clean up the properties object
+        // load the killing sound
+        MIX_Audio* deathSound = MIX_LoadAudio(mixer, "../Assets/powerup.wav", true);
+        if (!deathSound) {
+            printf("SDL Audio failed: %s\n", SDL_GetError());
+            return -1;
+        }
 
         while (!quit) {
             // Handle events on queue
@@ -103,7 +108,7 @@ int main() {
             for (int i = 0; i < TOTAL_TILES; ++i) {
                 tileSet[i]->render(camera);
             }
-            kill_monster(&things);
+            kill_monster(&things, mixer, deathSound);
             // spawn monsters here if the monster count is less than a number
             spawn_monster(&things, &spawn_tiles);
             for (int I = 1; I<MAX_NUMBER_THINGS; I++){
@@ -115,6 +120,7 @@ int main() {
             SDL_RenderPresent(gRenderer);
             frame++;
         }
+        MIX_DestroyAudio(deathSound);
         close(tileSet, &things);
     }
     return 0;

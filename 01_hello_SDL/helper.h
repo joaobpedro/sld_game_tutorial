@@ -52,7 +52,7 @@ void move(Tile *tiles[], Things_Manager *things);
 void setCamera(SDL_Rect &camera, Things_Manager *things);
 
 // kill monster by touching
-void kill_monster(Things_Manager *things);
+void kill_monster(Things_Manager *things, MIX_Mixer* mixer, MIX_Audio* deathSound);
 
 // spawn new monsters so we can keep playing
 void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles);

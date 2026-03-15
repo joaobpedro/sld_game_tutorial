@@ -431,11 +431,14 @@ void setCamera(SDL_Rect &camera, Things_Manager *things) {
     }
 }
 
-void kill_monster(Things_Manager *things) {
+void kill_monster(Things_Manager *things, MIX_Mixer* mixer, MIX_Audio* deathSound) {
     for (int I = 2; I < MAX_NUMBER_OF_MONSTERS + 2; I++) {
         if (things->Used[I] == 1){
             if (checkCollision(things->Things[1].Box, things->Things[I].Box)) {
                 things->Things[I].health -= 5;
+                if (mixer && deathSound) {
+                    MIX_PlayAudio(mixer, deathSound);
+                }
                 if (things->Things[I].health <= 0){
                     things->remove(things->Things[I].ref);
                 }
