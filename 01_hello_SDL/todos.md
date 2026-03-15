@@ -90,7 +90,8 @@ array with some things and thats it
 
 
 ## Iterator
-* [ ] first lets split the things array into small arrays
+* [x] first lets split the things array into small arrays
+NOTE FIXME Not sure I like this, seems a bit clumky, but for now it works
     - one for players, one for monsters, one for items, one for threes.... etc
 * [ ] now lets get a way to iterate only on this sub arrays
     * [ ] to begin it can be with fors and ifs just to make it easy, its my cabin

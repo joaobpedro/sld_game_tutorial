@@ -419,7 +419,7 @@ void setCamera(SDL_Rect &camera, Things_Manager *things) {
 }
 
 void kill_monster(Things_Manager *things) {
-    for (int I = 2; I < MAX_NUMBER_THINGS; I++) {
+    for (int I = 2; I < MAX_NUMBER_OF_MONSTERS + 1; I++) {
         if (things->Used[I] == 1){
             if (checkCollision(things->Things[1].Box, things->Things[I].Box)) {
                 things->Things[I].health -= 5;
@@ -433,7 +433,7 @@ void kill_monster(Things_Manager *things) {
 }
 
 void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
-    for (int I = 2; I < MAX_NUMBER_THINGS; I++) {
+    for (int I = 2; I < MAX_NUMBER_OF_MONSTERS+1; I++) {
         // NOTE TODO the logic here is not great, need to improve the iterations of the things
         // but works for now
         if (things->Used[I] == 0 && things->MonsterCount < MAX_NUMBER_OF_MONSTERS && things->Gen[I] < 2 && I <= MAX_NUMBER_OF_MONSTERS+1){

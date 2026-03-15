@@ -8,8 +8,10 @@
 #include "texture.h"
 
 // this will be an array of structs
-#define MAX_NUMBER_THINGS 1000
-#define MAX_NUMBER_OF_MONSTERS 3
+#define MAX_NUMBER_THINGS 100
+#define MAX_NUMBER_PLAYERS 1
+#define MAX_NUMBER_OF_MONSTERS 5
+#define MAX_NUMBER_OF_TREES 30
 
 // right now I am not using this for anything
 struct ThingRef {
@@ -26,6 +28,7 @@ enum class Kind {
     Nil,
     Player,
     Monster,
+    Tree,
     // Tile,
 };
 
@@ -85,7 +88,7 @@ struct Things_Manager {
     void update_array(int Things[], int size);
 
     ThingRef add_things(Kind kind){
-        int slot = find_empty();
+        int slot = find_empty(kind);
         if(slot) {
             Things[slot] = Thing{};
             Things[slot].kind = kind;
@@ -115,12 +118,29 @@ struct Things_Manager {
 
     private: 
 
-    int find_empty(){
-        for (int I = 1; I<MAX_NUMBER_THINGS; ++I){
-            if (Used[I] == 0) {
-                return I;
-            }
+    int find_empty(Kind kind){
+        switch(kind) {
+            case Kind::Player:
+                for (int I = 0 + 1; I<=MAX_NUMBER_PLAYERS; ++I){
+                    if (Used[I] == 0) {
+                        return I;
+                    }                }
+            case Kind::Monster:
+                for (int I = 0 + 1 + MAX_NUMBER_PLAYERS; I<=MAX_NUMBER_OF_MONSTERS; ++I){
+                    if (Used[I] == 0) {
+                        return I;
+                    }                 }
+            case Kind::Tree:
+                for (int I = 0 + 1 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS; I<=MAX_NUMBER_OF_TREES; ++I){
+                    if (Used[I] == 0) {
+                        return I;
+                    }                 }
         }
+        // for (int I = 1; I<MAX_NUMBER_THINGS; ++I){
+        //     if (Used[I] == 0) {
+        //         return I;
+        //     }
+        // }
         return 0;
     };
 
