@@ -121,17 +121,22 @@ struct Things_Manager {
                 for (int I = 0 + 1; I<=MAX_NUMBER_PLAYERS; ++I){
                     if (Used[I] == 0) {
                         return I;
-                    }                }
+                    }        
+                }
             case Kind::Monster:
                 for (int I = 0 + 1 + MAX_NUMBER_PLAYERS; I<=MAX_NUMBER_OF_MONSTERS + 1; ++I){
                     if (Used[I] == 0) {
                         return I;
-                    }                 }
+                    } 
+                }
             case Kind::Tree:
                 for (int I = 0 + 1 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS; I<=MAX_NUMBER_OF_TREES + 1; ++I){
                     if (Used[I] == 0) {
                         return I;
-                    }                 }
+                    }
+                }
+            case Kind::Nil:
+                return 0;
         }
         // for (int I = 1; I<MAX_NUMBER_THINGS; ++I){
         //     if (Used[I] == 0) {
