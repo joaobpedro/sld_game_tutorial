@@ -11,6 +11,7 @@
   * [x] give health properties and lives? maybe
   * [x] --FIXME-- I do not need the width and the height they are in box
   * [x] I am making a churrito better sprite but its not 32x32
+  * [ ] make churro traw a bone to kill the bees
   * [ ] [Iterator](#iterator) make an iterator
   * [ ] TODO expand the level, this one is very small
   * [ ] [General Fixes](#general-fixes)

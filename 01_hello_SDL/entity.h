@@ -8,10 +8,11 @@
 #include "texture.h"
 
 // this will be an array of structs
-#define MAX_NUMBER_THINGS 100
+#define MAX_NUMBER_THINGS 1000
 #define MAX_NUMBER_PLAYERS 1
 #define MAX_NUMBER_OF_MONSTERS 5
 #define MAX_NUMBER_OF_TREES 30
+#define MAX_NUMBER_OF_WEAPONS 30
 
 // right now I am not using this for anything
 struct ThingRef {
@@ -28,6 +29,7 @@ enum class Kind {
     Nil,
     Player,
     Monster,
+    Weapon,
     Tree,
     // Tile,
 };
@@ -131,6 +133,12 @@ struct Things_Manager {
                 }
             case Kind::Tree:
                 for (int I = 0 + 1 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS; I<=MAX_NUMBER_OF_TREES + 1; ++I){
+                    if (Used[I] == 0) {
+                        return I;
+                    }
+                }
+            case Kind::Weapon:
+                for (int I = 0 + 1 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS + MAX_NUMBER_OF_TREES; I<=MAX_NUMBER_OF_WEAPONS + 1; ++I){
                     if (Used[I] == 0) {
                         return I;
                     }
