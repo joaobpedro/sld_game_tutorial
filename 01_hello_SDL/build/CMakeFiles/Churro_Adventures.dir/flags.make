@@ -4,9 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /opt/homebrew/include -isystem /usr/local/include
+CXX_INCLUDES = 
 
-CXX_FLAGSarm64 =  -arch arm64 -fPIE
-
-CXX_FLAGS =  -arch arm64 -fPIE
+CXX_FLAGS = -fPIE
 

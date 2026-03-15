@@ -12,7 +12,7 @@
 #define MAX_NUMBER_PLAYERS 1
 #define MAX_NUMBER_OF_MONSTERS 5
 #define MAX_NUMBER_OF_TREES 30
-#define MAX_NUMBER_OF_WEAPONS 30
+#define MAX_NUMBER_OF_WEAPONS 300
 
 // right now I am not using this for anything
 struct ThingRef {

@@ -11,7 +11,7 @@
   * [x] give health properties and lives? maybe
   * [x] --FIXME-- I do not need the width and the height they are in box
   * [x] I am making a churrito better sprite but its not 32x32
-  * [ ] make churro traw a bone to kill the bees
+  * [x] [Weapon](#weapon)make churro traw a bone to kill the bees
   * [ ] [Iterator](#iterator) make an iterator
   * [ ] TODO expand the level, this one is very small
   * [ ] [General Fixes](#general-fixes)
@@ -88,6 +88,12 @@ data for all components
 * [x] --FIXME-- the monsters seem to run out after a while
 * [x] --FIXME-- right now i am not managing entities at all, just populating the 
 array with some things and thats it
+
+## Weapon
+* [x] make an event handling for to call the traw_weapon function
+* [x] make a function called traw_weapon and call in the event
+* [x] send the weapon, check for collision with walls and if it does unuse, same for the map end
+* [x] make the kill funtion working with the weapon
 
 
 ## Iterator

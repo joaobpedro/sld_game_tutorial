@@ -57,6 +57,9 @@ void kill_monster(Things_Manager *things, MIX_Mixer* mixer, MIX_Audio* deathSoun
 // spawn new monsters so we can keep playing
 void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles);
 
+// create heapon for churro to traw
+void weapon(Things_Manager *things);
+
 // animate sprites
 void animate(int &frame, SDL_FRect &currentClip, const Thing& thing);
 

@@ -346,6 +346,9 @@ void handleEvent(SDL_Event &e, Things_Manager *things) {
                     case SDLK_RIGHT:
                         things->Things[I].VelX += 5*STD_VEL;
                         break;
+                    case SDLK_SPACE:
+                        weapon(things);
+                        break;
                 }
             }
             // If a key was released
@@ -363,6 +366,8 @@ void handleEvent(SDL_Event &e, Things_Manager *things) {
                         break;
                     case SDLK_RIGHT:
                         things->Things[I].VelX -= 5*STD_VEL;
+                        break;
+                    case SDLK_SPACE:
                         break;
                 }
             }
@@ -406,6 +411,15 @@ void move(Tile *tiles[], Things_Manager *things) {
                 // move back
                 things->Things[I].VelY = -1*things->Things[I].VelY;
             }
+        } else if (things->Used[I]==1 && things->Things[I].kind == Kind::Weapon) {
+            things->Things[I].Box.x += things->Things[I].VelX;
+
+            // If the dot went too far to the left or right or touched a wall
+            if ((things->Things[I].Box.x < 0) || (things->Things[I].Box.x + things->Things[I].Box.w > LEVEL_WIDTH) || touchesWall(things->Things[I].Box, tiles)) {
+            // move back
+                things->Things[I].VelX = 0;
+                things->remove(things->Things[I].ref);
+            }
         }
     }
 }
@@ -432,20 +446,35 @@ void setCamera(SDL_Rect &camera, Things_Manager *things) {
 }
 
 void kill_monster(Things_Manager *things, MIX_Mixer* mixer, MIX_Audio* deathSound) {
+    // for (int I = 2; I < MAX_NUMBER_OF_MONSTERS + 2; I++) {
+    //     if (things->Used[I] == 1){
+    //         if (checkCollision(things->Things[1].Box, things->Things[I].Box)) {
+    //             things->Things[I].health -= 5;
+    //             if (mixer && deathSound) {
+    //                 MIX_PlayAudio(mixer, deathSound);
+    //             }
+    //             if (things->Things[I].health <= 0){
+    //                 things->remove(things->Things[I].ref);
+    //             }
+    //         }
+    //     }
+    // }
+
     for (int I = 2; I < MAX_NUMBER_OF_MONSTERS + 2; I++) {
-        if (things->Used[I] == 1){
-            if (checkCollision(things->Things[1].Box, things->Things[I].Box)) {
-                things->Things[I].health -= 5;
-                if (mixer && deathSound) {
-                    MIX_PlayAudio(mixer, deathSound);
-                }
-                if (things->Things[I].health <= 0){
-                    things->remove(things->Things[I].ref);
+        for (int J = 2 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS + MAX_NUMBER_OF_TREES; J <= 2 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS + MAX_NUMBER_OF_TREES + MAX_NUMBER_OF_WEAPONS; J++) {
+            if (things->Used[I] == 1){
+                if (checkCollision(things->Things[J].Box, things->Things[I].Box)) {
+                    things->Things[I].health -= 50;
+                    if (mixer && deathSound) {
+                        MIX_PlayAudio(mixer, deathSound);
+                    }
+                    if (things->Things[I].health <= 0){
+                        things->remove(things->Things[I].ref);
+                    }
                 }
             }
-        }
     }
-
+    }
 }
 
 void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
@@ -467,6 +496,20 @@ void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
             things->get(MonsterIdx).texture.loadFromFile(things->get(MonsterIdx).path);
         }
     }
+};
+
+
+void weapon(Things_Manager *things){
+    ThingRef WeaponIdx = things->add_things(Kind::Weapon);
+    things->get(WeaponIdx).ref = WeaponIdx;
+    things->get(WeaponIdx).Box = things->Things[1].Box; // hard code for one player only
+    things->get(WeaponIdx).Box.w = 32;
+    things->get(WeaponIdx).Box.h = 32;
+    things->get(WeaponIdx).VelX = 5;
+    things->get(WeaponIdx).VelY = 0;
+    things->get(WeaponIdx).health = 100;
+    things->get(WeaponIdx).path = "../Assets/bone.png";
+    things->get(WeaponIdx).texture.loadFromFile(things->get(WeaponIdx).path);
 };
 
 // animate any thing
