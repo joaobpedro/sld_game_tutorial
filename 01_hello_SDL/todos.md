@@ -10,7 +10,7 @@
   * [x] !! IMPORTANT make entity system for the game
   * [x] give health properties and lives? maybe
   * [x] --FIXME-- I do not need the width and the height they are in box
-  * [ ] I am making a churrito better sprite but its not 32x32
+  * [x] I am making a churrito better sprite but its not 32x32
   * [ ] [Iterator](#iterator) make an iterator
   * [ ] TODO expand the level, this one is very small
   * [ ] [General Fixes](#general-fixes)
@@ -108,4 +108,7 @@ playable places of the game
 * [x] --FIXME IMPORTANT-- there is a seg fault in the pop os built? I do not understand why
  - NOTE: found the bug, the entities are being created correctly, but the laodmedia is not being called for the
  new entities, therefore there is nothing to render
+
+* [ ] IMPORTANT There was a wierd bug righ now, the boxes of the monsters were zero, i needed to print them to give
+them values.
 

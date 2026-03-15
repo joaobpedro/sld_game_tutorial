@@ -56,8 +56,8 @@ struct Thing {
     // NOTE I made these globals, which means that all things
     // will need the same sprite structure
     // if I want thing specific sprite this is the way
-    // float kSpriteWidth; 
-    // float kSpriteHeight; 
+    float kSpriteWidth{32}; 
+    float kSpriteHeight{32}; 
     // float padding; 
     // int kWakingAnimationFrames; 
     // int kWakingAnimationFramesPerSprite; 
@@ -85,8 +85,6 @@ struct Things_Manager {
     int ThingsCount;
     int MonsterCount;
 
-    void update_array(int Things[], int size);
-
     ThingRef add_things(Kind kind){
         int slot = find_empty(kind);
         if(slot) {
@@ -94,7 +92,6 @@ struct Things_Manager {
             Things[slot].kind = kind;
             Used[slot] = 1;
             Gen[slot] += 1;
-            printf("Generation slot: %d\n", Gen[slot]);
             if(kind == Kind::Monster) {
                 MonsterCount++;
             }
@@ -126,12 +123,12 @@ struct Things_Manager {
                         return I;
                     }                }
             case Kind::Monster:
-                for (int I = 0 + 1 + MAX_NUMBER_PLAYERS; I<=MAX_NUMBER_OF_MONSTERS; ++I){
+                for (int I = 0 + 1 + MAX_NUMBER_PLAYERS; I<=MAX_NUMBER_OF_MONSTERS + 1; ++I){
                     if (Used[I] == 0) {
                         return I;
                     }                 }
             case Kind::Tree:
-                for (int I = 0 + 1 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS; I<=MAX_NUMBER_OF_TREES; ++I){
+                for (int I = 0 + 1 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS; I<=MAX_NUMBER_OF_TREES + 1; ++I){
                     if (Used[I] == 0) {
                         return I;
                     }                 }

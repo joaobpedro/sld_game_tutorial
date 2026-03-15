@@ -58,7 +58,7 @@ void kill_monster(Things_Manager *things);
 void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles);
 
 // animate sprites
-void animate(int &frame, SDL_FRect &currentClip);
+void animate(int &frame, SDL_FRect &currentClip, const Thing& thing);
 
 //The window we'll be rendering to
 extern SDL_Window* gWindow;

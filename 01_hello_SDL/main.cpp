@@ -28,6 +28,8 @@ int main() {
         things.get(PlayerIdx).Box = {0,0};
         things.get(PlayerIdx).Box.w = 42;
         things.get(PlayerIdx).Box.h = 32;
+        things.get(PlayerIdx).kSpriteWidth = 42;
+        things.get(PlayerIdx).kSpriteHeight= 32;
         things.get(PlayerIdx).path = "../Assets/flying_churro1-sheet32.png";
         
         for (int I = 2; I < MAX_NUMBER_OF_MONSTERS+2; I++){
@@ -58,6 +60,33 @@ int main() {
             things.Things[I].Box = {spawn_tiles.x[random_entry], spawn_tiles.y[random_entry]};
         }
 
+
+        // deal with the audio stuff
+        MIX_Mixer* mixer = MIX_CreateMixerDevice(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, nullptr);
+        if (!mixer) {
+            printf("SDL Audio failed: %s\n", SDL_GetError());
+            return -1;
+        }
+        // 4. Load the Background Music
+        // The 'false' here is important! It means "Stream this from the hard drive."
+        // For long music, you want 'false'. For short sound effects, use 'true' to pre-load them into RAM.
+        MIX_Audio* bgmAudio = MIX_LoadAudio(mixer, "../Assets/SpriteDance.mp3", false);
+    
+        // 5. Create a Track to play the music on
+        MIX_Track* bgmTrack = MIX_CreateTrack(mixer);
+    
+        // 6. Assign the music to the track
+        MIX_SetTrackAudio(bgmTrack, bgmAudio);
+    
+        // 7. Play the music and tell it to loop!
+        // SDL3 uses "Properties" to pass in extra settings like looping
+        SDL_PropertiesID props = SDL_CreateProperties();
+        SDL_SetNumberProperty(props, MIX_PROP_PLAY_LOOPS_NUMBER, -1); // -1 means infinite loops
+        
+        MIX_PlayTrack(bgmTrack, props);
+        
+        SDL_DestroyProperties(props); // Clean up the properties object
+
         while (!quit) {
             // Handle events on queue
             while (SDL_PollEvent(&e) != 0) {
@@ -79,7 +108,7 @@ int main() {
             spawn_monster(&things, &spawn_tiles);
             for (int I = 1; I<MAX_NUMBER_THINGS; I++){
                 if(things.Used[I] == 1){
-                    animate(frame, things.Things[I].CurrentClip);
+                    animate(frame, things.Things[I].CurrentClip, things.Things[I]);
                 }
             }
             render(&things, camera);

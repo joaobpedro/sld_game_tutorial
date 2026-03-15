@@ -56,6 +56,19 @@ bool init() {
         // initialize sound
     }
 
+    // init audio here
+    if (!SDL_Init(SDL_INIT_AUDIO)) {
+        printf("SDL Audio failed: %s\n", SDL_GetError());
+        return false;
+    }
+
+    // 2. Initialize SDL3_mixer
+    // Note: MIX_Init no longer requires you to pass OGG/MP3 flags!
+    if (!MIX_Init()) {
+        printf("SDL Audio failed: %s\n", SDL_GetError());
+        return false;
+    } 
+
     return success;
 }
 
@@ -419,7 +432,7 @@ void setCamera(SDL_Rect &camera, Things_Manager *things) {
 }
 
 void kill_monster(Things_Manager *things) {
-    for (int I = 2; I < MAX_NUMBER_OF_MONSTERS + 1; I++) {
+    for (int I = 2; I < MAX_NUMBER_OF_MONSTERS + 2; I++) {
         if (things->Used[I] == 1){
             if (checkCollision(things->Things[1].Box, things->Things[I].Box)) {
                 things->Things[I].health -= 5;
@@ -437,9 +450,7 @@ void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
         // NOTE TODO the logic here is not great, need to improve the iterations of the things
         // but works for now
         if (things->Used[I] == 0 && things->MonsterCount < MAX_NUMBER_OF_MONSTERS && things->Gen[I] < 2 && I <= MAX_NUMBER_OF_MONSTERS+1){
-            printf("number: %d\n", I);
             ThingRef MonsterIdx = things->add_things(Kind::Monster);
-            printf("Created Idx: %d\n", MonsterIdx.Idx);
             things->get(MonsterIdx).ref = MonsterIdx;
             things->get(MonsterIdx).Box.w = 32;
             things->get(MonsterIdx).Box.h = 32;
@@ -456,8 +467,12 @@ void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
 };
 
 // animate any thing
-void animate(int &frame, SDL_FRect &currentClip) {
+void animate(int &frame, SDL_FRect &currentClip, const Thing& thing) {
     // this is just the selection of the sprite clip to show given a frame
+
+    // overwrite the SpriteWidth and Sprite height
+    float SpriteWidth = thing.kSpriteWidth;
+    float SpriteHeight = thing.kSpriteHeight;
     if (frame / WalkingAnimationsFramesperSprite >= WalkingAnimationFrames) {
         frame = 0;
     }
