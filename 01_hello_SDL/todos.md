@@ -73,7 +73,7 @@
         * [ ] now need a proper animation for the kill monster
     * [x] spawn monster
         * [x] need to stop spawning monsters after generation three?
-    ...
+    ..
 * [x] --FIXME--: there is a bug in the event handling and the access to the player data is not as I imagined
 need to check the pointer/ref/adresses stuff.
     * [x] NOTE FIXED seems fixed for now
@@ -116,6 +116,6 @@ playable places of the game
  - NOTE: found the bug, the entities are being created correctly, but the laodmedia is not being called for the
  new entities, therefore there is nothing to render
 
-* [ ] IMPORTANT There was a wierd bug righ now, the boxes of the monsters were zero, i needed to print them to give
+* [x] --IMPORTANT-- There was a wierd bug righ now, the boxes of the monsters were zero, i needed to print them to give
 them values.
 
