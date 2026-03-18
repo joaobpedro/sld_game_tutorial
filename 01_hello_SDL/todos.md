@@ -12,6 +12,7 @@
   * [x] --FIXME-- I do not need the width and the height they are in box
   * [x] I am making a churrito better sprite but its not 32x32
   * [x] [Weapon](#weapon)make churro traw a bone to kill the bees
+  * [ ] IMPORTANT optmize, right now the game is looping too much, change the loops to order of 1
   * [ ] [Iterator](#iterator) make an iterator
   * [ ] TODO expand the level, this one is very small
   * [ ] [General Fixes](#general-fixes)
@@ -47,7 +48,7 @@
   * [x] make the monster character, i.e., rending
   * [x] make the collision assessment
         * [x] the collisions are following the camera, need to make them camera independent
-  * [x] give health property so Churro can kill the monsters !!!!!!!!!!!!!!!!!!!!!!!!
+  * [x] give health property so Churro can kill the monsters
 
 ## Entity System
 * [ ] build an entity manager
@@ -96,7 +97,7 @@ array with some things and thats it
 * [x] make the kill funtion working with the weapon
 
 
-## Iterator
+### Iterator
 * [x] first lets split the things array into small arrays
 NOTE FIXME Not sure I like this, seems a bit clumky, but for now it works
     - one for players, one for monsters, one for items, one for threes.... etc

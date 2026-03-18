@@ -12,7 +12,7 @@
       "-o",
       "game"
     ],
-    "directory": "/home/joao/source/01_game/01_hello_SDL",
+    "directory": "/home/joao/source/01_hello_SDL",
     "output": "game"
   }
 ]

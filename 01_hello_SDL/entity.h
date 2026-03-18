@@ -82,9 +82,8 @@ struct Things_Manager {
     Thing Things[MAX_NUMBER_THINGS];
     int Used[MAX_NUMBER_THINGS];
     int Gen[MAX_NUMBER_THINGS];
-    int NextFree;
-    int LastFree;
-    int ThingsCount;
+    int NextFree[MAX_NUMBER_THINGS];
+    int FirstFree;
     int MonsterCount;
 
     ThingRef add_things(Kind kind){
