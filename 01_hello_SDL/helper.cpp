@@ -460,20 +460,25 @@ void kill_monster(Things_Manager *things, MIX_Mixer* mixer, MIX_Audio* deathSoun
     //     }
     // }
 
+    // TODO: this is working now but I dont like this, I am running all array twice just to get the collisons
     for (int I = 2; I < MAX_NUMBER_OF_MONSTERS + 2; I++) {
-        for (int J = 2 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS + MAX_NUMBER_OF_TREES; J <= 2 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS + MAX_NUMBER_OF_TREES + MAX_NUMBER_OF_WEAPONS; J++) {
-            if (things->Used[I] == 1){
-                if (checkCollision(things->Things[J].Box, things->Things[I].Box)) {
-                    things->Things[I].health -= 50;
-                    if (mixer && deathSound) {
-                        MIX_PlayAudio(mixer, deathSound);
-                    }
-                    if (things->Things[I].health <= 0){
-                        things->remove(things->Things[I].ref);
+        for (int J = 2; J <= 2 + MAX_NUMBER_THINGS; J++) {
+            if (things->Used[I] == 1 && things->Used[J] == 1){
+                Kind kindI = things->Things[I].kind;
+                Kind kindJ = things->Things[J].kind;
+                if(kindI == Kind::Monster && kindJ == Kind::Weapon) {
+                    if (checkCollision(things->Things[J].Box, things->Things[I].Box)) {
+                        things->Things[I].health -= 50;
+                        if (mixer && deathSound) {
+                            MIX_PlayAudio(mixer, deathSound);
+                        }
+                        if (things->Things[I].health <= 0){
+                            things->remove(things->Things[I].ref);
+                        }
                     }
                 }
             }
-    }
+        }
     }
 }
 

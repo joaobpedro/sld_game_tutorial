@@ -1,18 +1,32 @@
 [
-  {
-    "file": "main.cpp",
-    "arguments": [
-      "g++",
-      "main.cpp",
-      "-g",
-      "-w",
-      "-I/usr/include/SDL2",
-      "-D_GNU_SOURCE=1",
-      "-D_REENTRANT",
-      "-o",
-      "game"
-    ],
-    "directory": "/home/joao/source/01_hello_SDL",
-    "output": "game"
-  }
+{
+  "directory": "/home/joao/source/01_hello_SDL",
+  "command": "/usr/bin/c++   -fPIE -o CMakeFiles/Churro_Adventures.dir/globals.cpp.o -c /home/joao/source/01_hello_SDL/globals.cpp",
+  "file": "/home/joao/source/01_hello_SDL/globals.cpp",
+  "output": "CMakeFiles/Churro_Adventures.dir/globals.cpp.o"
+},
+{
+  "directory": "/home/joao/source/01_hello_SDL",
+  "command": "/usr/bin/c++   -fPIE -o CMakeFiles/Churro_Adventures.dir/helper.cpp.o -c /home/joao/source/01_hello_SDL/helper.cpp",
+  "file": "/home/joao/source/01_hello_SDL/helper.cpp",
+  "output": "CMakeFiles/Churro_Adventures.dir/helper.cpp.o"
+},
+{
+  "directory": "/home/joao/source/01_hello_SDL",
+  "command": "/usr/bin/c++   -fPIE -o CMakeFiles/Churro_Adventures.dir/main.cpp.o -c /home/joao/source/01_hello_SDL/main.cpp",
+  "file": "/home/joao/source/01_hello_SDL/main.cpp",
+  "output": "CMakeFiles/Churro_Adventures.dir/main.cpp.o"
+},
+{
+  "directory": "/home/joao/source/01_hello_SDL",
+  "command": "/usr/bin/c++   -fPIE -o CMakeFiles/Churro_Adventures.dir/texture.cpp.o -c /home/joao/source/01_hello_SDL/texture.cpp",
+  "file": "/home/joao/source/01_hello_SDL/texture.cpp",
+  "output": "CMakeFiles/Churro_Adventures.dir/texture.cpp.o"
+},
+{
+  "directory": "/home/joao/source/01_hello_SDL",
+  "command": "/usr/bin/c++   -fPIE -o CMakeFiles/Churro_Adventures.dir/tile.cpp.o -c /home/joao/source/01_hello_SDL/tile.cpp",
+  "file": "/home/joao/source/01_hello_SDL/tile.cpp",
+  "output": "CMakeFiles/Churro_Adventures.dir/tile.cpp.o"
+}
 ]

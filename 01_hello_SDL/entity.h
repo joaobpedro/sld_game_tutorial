@@ -87,7 +87,7 @@ struct Things_Manager {
     int MonsterCount;
 
     ThingRef add_things(Kind kind){
-        int slot = find_empty(kind);
+        int slot = find_empty();
         if(slot) {
             Things[slot] = Thing{};
             Things[slot].kind = kind;
@@ -116,40 +116,12 @@ struct Things_Manager {
 
     private: 
 
-    int find_empty(Kind kind){
-        switch(kind) {
-            case Kind::Player:
-                for (int I = 0 + 1; I<=MAX_NUMBER_PLAYERS; ++I){
-                    if (Used[I] == 0) {
-                        return I;
-                    }        
-                }
-            case Kind::Monster:
-                for (int I = 0 + 1 + MAX_NUMBER_PLAYERS; I<=MAX_NUMBER_OF_MONSTERS + 1; ++I){
-                    if (Used[I] == 0) {
-                        return I;
-                    } 
-                }
-            case Kind::Tree:
-                for (int I = 0 + 1 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS; I<=MAX_NUMBER_OF_TREES + 1; ++I){
-                    if (Used[I] == 0) {
-                        return I;
-                    }
-                }
-            case Kind::Weapon:
-                for (int I = 0 + 1 + MAX_NUMBER_PLAYERS + MAX_NUMBER_OF_MONSTERS + MAX_NUMBER_OF_TREES; I<=MAX_NUMBER_OF_WEAPONS + 1; ++I){
-                    if (Used[I] == 0) {
-                        return I;
-                    }
-                }
-            case Kind::Nil:
-                return 0;
+    int find_empty(){
+        for (int I = 1; I<MAX_NUMBER_THINGS; ++I){
+            if (Used[I] == 0) {
+                return I;
+            }
         }
-        // for (int I = 1; I<MAX_NUMBER_THINGS; ++I){
-        //     if (Used[I] == 0) {
-        //         return I;
-        //     }
-        // }
         return 0;
     };
 

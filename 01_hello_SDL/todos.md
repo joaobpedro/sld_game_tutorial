@@ -101,6 +101,7 @@ array with some things and thats it
 * [x] first lets split the things array into small arrays
 NOTE FIXME Not sure I like this, seems a bit clumky, but for now it works
     - one for players, one for monsters, one for items, one for threes.... etc
+* [ ] FIXME there is a bug in the add method of the entity manager
 * [ ] now lets get a way to iterate only on this sub arrays
     * [ ] to begin it can be with fors and ifs just to make it easy, its my cabin
     * [ ] make it more fancy, with C++ syntax or ways:? 

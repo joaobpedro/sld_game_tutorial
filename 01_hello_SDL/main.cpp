@@ -12,7 +12,6 @@
 
 Things_Manager things;
 
-
 int main() {
     if (!init()) {
         return 1;
