@@ -12,7 +12,7 @@
 
 Things_Manager things;
 
-int main() {
+int main(int argc, char* argv[]) {
     if (!init()) {
         return 1;
     } else {
@@ -55,7 +55,7 @@ int main() {
 
         // now I can place the monsters because now I have the tiles setted
         for (int I = 2; I<MAX_NUMBER_OF_MONSTERS+2; I++){
-            int random_entry = getRandomInt(1, spawn_tiles.valid_count);
+            int random_entry = getRandomInt(0, spawn_tiles.valid_count);
             things.Things[I].Box = {spawn_tiles.x[random_entry], spawn_tiles.y[random_entry]};
         }
 

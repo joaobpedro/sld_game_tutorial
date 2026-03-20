@@ -1,5 +1,4 @@
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
 #include <SDL3_image/SDL_image.h>
 #include <string>
 #include <fstream>
@@ -19,7 +18,7 @@ struct valid_tiles {
 };
 
 // generates random numbers
-int getRandomInt(int min, int max); 
+int getRandomInt(int minInt, int maxInt); 
 
 //Starts up SDL and creates window
 bool init();

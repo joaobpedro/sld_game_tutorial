@@ -1,5 +1,4 @@
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_mixer/SDL_mixer.h>
 #include <fstream>
@@ -21,12 +20,12 @@ const int TOTAL_TILE_SPRITES = 12;
 SDL_FRect gTileClips[TOTAL_TILE_SPRITES];
 
 // math helper
-int getRandomInt(int min, int max) {
+int getRandomInt(int minInt, int maxInt) {
     // static ensures the engine is only initialized once for the whole program
     static std::random_device rd; 
     static std::mt19937 gen(rd()); 
 
-    std::uniform_int_distribution<> dist(min, max);
+    std::uniform_int_distribution<> dist(minInt, maxInt);
     return dist(gen);
 }
 
@@ -496,7 +495,7 @@ void spawn_monster(Things_Manager *things, valid_tiles *spawn_tiles){
             things->get(MonsterIdx).health = 100;
             things->get(MonsterIdx).path = "../Assets/monster.png";
 
-            int random_entry = getRandomInt(1, spawn_tiles->valid_count);
+            int random_entry = getRandomInt(0, spawn_tiles->valid_count);
             things->get(MonsterIdx).Box = {spawn_tiles->x[random_entry], spawn_tiles->y[random_entry]};
             things->get(MonsterIdx).texture.loadFromFile(things->get(MonsterIdx).path);
         }
